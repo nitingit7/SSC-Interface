@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Mock — SSC CGL Practice Tests</title>
+  <meta name="description" content="Practice SSC CGL Tier 1 mock tests with a real exam-like interface. Upload your JSON test file and start practicing instantly." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+<link rel=" stylesheet\ href=\https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css\ crossorigin=\anonymous\><script defer src=\https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js\ crossorigin=\anonymous\></script><script defer src=\https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js\ crossorigin=\anonymous\></script></head>
+<body>
+<div class="home-wrapper">
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="home-header">
+    <div class="logo">
+      <div class="logo-icon">📋</div>
+      <span class="logo-text">Quick Mock</span>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+  </header>
+
+  <!-- ── Main ───────────────────────────────────────────── -->
+  <main class="home-main">
+
+    <!-- Hero -->
+    <div class="home-hero">
+      <div class="hero-badge">⚡ SSC CGL Tier 1 — Practice Platform</div>
+      <h1>
+        Ace Your Exam with<br />
+        <span class="gradient-text">Real Mock Tests</span>
+      </h1>
+      <p>Upload a JSON file or paste your test JSON directly — experience a full exam simulation with section timers, question palette, negative marking, and detailed results.</p>
+    </div>
+
+    <!-- Upload Card -->
+    <div class="upload-card">
+
+      <!-- Tab Switcher -->
+      <div class="input-tabs">
+        <button class="input-tab active" id="tab-upload" onclick="switchInputTab('upload')">
+          📁 Upload File
+        </button>
+        <button class="input-tab" id="tab-paste" onclick="switchInputTab('paste')">
+          📋 Paste JSON
+        </button>
+      </div>
+
+      <!-- ── Panel: Upload File ── -->
+      <div id="panel-upload">
+        <div class="upload-area" id="upload-area" role="button" tabindex="0"
+             aria-label="Click or drag to upload JSON test file">
+          <span class="upload-icon-wrap">📂</span>
+          <p class="upload-title">Drop your Test JSON here</p>
+          <p class="upload-subtitle">or click to browse your files</p>
+          <button class="upload-action-btn" id="upload-btn" type="button">
+            📁 Choose JSON File
+          </button>
+          <p class="upload-hint">Supports full tests &amp; sectional tests · Works completely offline</p>
+          <input type="file" id="fileInput" accept=".json,application/json" />
+        </div>
+      </div>
+
+      <!-- ── Panel: Paste JSON ── -->
+      <div id="panel-paste" style="display:none; padding: 1.25rem 1.25rem 0;">
+        <div class="paste-area-wrap">
+          <textarea
+            id="json-paste-area"
+            class="json-textarea"
+            placeholder='Paste your test JSON here…&#10;&#10;{&#10;  "test_type": "full",&#10;  "title": "My Mock Test",&#10;  "marking": { "correct": 2, "wrong": -0.5, "unattempted": 0 },&#10;  "sections": [ ... ]&#10;}'
+            spellcheck="false"
+            autocomplete="off"
+          ></textarea>
+          <div class="paste-actions">
+            <button class="btn btn-ghost btn-sm" onclick="clearPaste()">✕ Clear</button>
+            <button class="btn btn-primary" onclick="parseFromPaste()">
+              ✅ Parse &amp; Preview
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Test Preview (hidden until file/paste loaded) -->
+      <div class="test-preview" id="test-preview">
+
+        <div class="preview-top">
+          <span class="preview-badge badge-full" id="preview-badge">📋 Full Test</span>
+          <span class="preview-title" id="preview-title">Loading…</span>
+        </div>
+
+        <div class="preview-stats">
+          <div class="stat-item">
+            <div class="stat-label">📝 Total Questions</div>
+            <div class="stat-value" id="stat-total-q">—</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">📑 Sections</div>
+            <div class="stat-value" id="stat-sections">—</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">⏱ Total Time</div>
+            <div class="stat-value" id="stat-time">—</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">🏆 Max Marks</div>
+            <div class="stat-value" id="stat-max-marks">—</div>
+          </div>
+        </div>
+
+        <div class="sections-list">
+          <div class="sections-list-label">Sections</div>
+          <div id="section-list-items"><!-- Filled by JS --></div>
+        </div>
+
+        <div class="marking-banner">
+          <span id="marking-info">Marking scheme will appear here</span>
+        </div>
+
+        <div class="preview-actions">
+          <button class="btn btn-primary btn-lg" id="btn-start-test" onclick="startTest()" disabled>
+            🚀 Start Test
+          </button>
+          <button class="btn btn-ghost" onclick="resetInput()">✕ Clear</button>
+        </div>
+
+      </div><!-- /test-preview -->
+    </div><!-- /upload-card -->
+
+    <!-- JSON Format Guide (collapsible) -->
+    <details class="format-guide">
+      <summary>What should my JSON look like?</summary>
+      <pre><code>{
+  "test_type": "full",           // "full" or "sectional"
+  "title": "My Mock Test 01",
+  "marking": {
+    "correct": 2,               // marks for correct answer
+    "wrong": -0.5,              // marks deducted for wrong (use negative)
+    "unattempted": 0            // marks for skipped question
+  },
+  "sections": [
+    {
+      "id": "reasoning",        // unique section ID
+      "name": "General Intelligence &amp; Reasoning",
+      "time_minutes": 15,       // section timer in minutes
+      "questions": [
+        {
+          "id": "q1",           // unique question ID
+          "text": "Which is the odd one out?",
+          "image": null,        // or "images/q1.png" (relative path)
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",         // ← correct answer (index 2)
+            "Option D"
+          ],
+          "answer": 2,          // 0-indexed: 0=A, 1=B, 2=C, 3=D
+          "solution": "Explanation text here (optional)"
+        }
+      ]
+    }
+  ]
+}</code></pre>
+    </details>
+
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="alert"></div>
+
+<script src="js/state.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

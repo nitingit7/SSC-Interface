@@ -1,0 +1,98 @@
+{
+  "test_type": "sectional",
+  "title": "Reasoning Sectional Test — 01",
+  "marking": {
+    "correct": 2,
+    "wrong": -0.5,
+    "unattempted": 0
+  },
+  "sections": [
+    {
+      "id": "reasoning",
+      "name": "General Intelligence & Reasoning",
+      "time_minutes": 20,
+      "questions": [
+        {
+          "id": "r1",
+          "text": "Pointing to a woman in a photograph, a man says, 'She is the mother of my son's wife.' How is the woman related to the man?",
+          "image": null,
+          "options": ["Sister-in-law", "Daughter-in-law", "Mother-in-law of son", "Wife"],
+          "answer": 2,
+          "solution": "The man's son's wife is his daughter-in-law. The woman is the mother of his daughter-in-law. So the woman is the mother-in-law of his son."
+        },
+        {
+          "id": "r2",
+          "text": "In a row of boys, Ravi is 7th from the left and Mohan is 12th from the right. If they interchange their positions, Ravi becomes 22nd from the left. How many boys are there in the row?",
+          "image": null,
+          "options": ["32", "33", "34", "35"],
+          "answer": 1,
+          "solution": "After interchange, Ravi's new position from left = 22nd (previously Mohan's position).\nMohan's original position from right = 12th.\nTotal = Ravi's new position from left + Mohan's position from right − 1 = 22 + 12 − 1 = 33."
+        },
+        {
+          "id": "r3",
+          "text": "Select the figure that will come next in the series.\nCircle → Triangle → Square → Pentagon → ?",
+          "image": null,
+          "options": ["Hexagon", "Heptagon", "Circle", "Triangle"],
+          "answer": 0,
+          "solution": "The pattern is increasing the number of sides: Circle (0 sides in context), Triangle (3), Square (4), Pentagon (5), Hexagon (6). So the next shape is a Hexagon."
+        },
+        {
+          "id": "r4",
+          "text": "In a certain code, CLOCK is written as KCOLC. Using the same code, how will PLAIN be written?",
+          "image": null,
+          "options": ["NIALP", "NALIP", "NIPAL", "PNAIL"],
+          "answer": 0,
+          "solution": "The rule is: the word is simply reversed. CLOCK → KCOLC (reverse of CLOCK). Applying the same rule to PLAIN: reverse of PLAIN = NIALP."
+        },
+        {
+          "id": "r5",
+          "text": "Which of the following Venn diagrams correctly represents the relationship among: Animals, Dogs, Cats?",
+          "image": null,
+          "options": ["Two separate circles inside a larger circle", "Three concentric circles", "Two circles overlapping inside a larger circle", "Three separate circles"],
+          "answer": 0,
+          "solution": "Dogs and Cats are both Animals, but Dogs and Cats are distinct groups with no overlap. So the correct diagram shows two separate circles (Dogs and Cats) both contained within a larger circle (Animals)."
+        },
+        {
+          "id": "r6",
+          "text": "A man walks 4 km North, then turns right and walks 3 km East. How far is he from his starting point?",
+          "image": null,
+          "options": ["5 km", "6 km", "7 km", "3 km"],
+          "answer": 0,
+          "solution": "Using Pythagoras theorem: Distance = √(4² + 3²) = √(16 + 9) = √25 = 5 km."
+        },
+        {
+          "id": "r7",
+          "text": "Choose the missing number: 3, 7, 13, 21, 31, ?",
+          "image": null,
+          "options": ["41", "43", "45", "47"],
+          "answer": 1,
+          "solution": "Differences: 4, 6, 8, 10 — the differences increase by 2 each time. Next difference = 12. So 31 + 12 = 43."
+        },
+        {
+          "id": "r8",
+          "text": "If it was Saturday on 1st January 2000, what day was it on 1st January 2001?",
+          "image": null,
+          "options": ["Saturday", "Sunday", "Monday", "Tuesday"],
+          "answer": 2,
+          "solution": "Year 2000 was a leap year (366 days). 366 = 52 weeks + 2 days. So the day advanced by 2. Saturday + 2 = Monday. It was Monday on 1st January 2001."
+        },
+        {
+          "id": "r9",
+          "text": "In the following question, select the odd word pair from the given alternatives: (A) Pen — Write (B) Knife — Cut (C) Book — Read (D) Fan — Cool",
+          "image": null,
+          "options": ["Pen — Write", "Knife — Cut", "Book — Read", "Fan — Cool"],
+          "answer": 2,
+          "solution": "Pen, Knife, and Fan are all tools used by a person to perform an action. A Book is an object used for reading, but it itself doesn't 'do' anything — it's read by a person. Alternatively, the others are instruments (Pen writes, Knife cuts, Fan cools) while a Book doesn't actively 'read'. Book — Read is the odd pair."
+        },
+        {
+          "id": "r10",
+          "text": "Statement: All roses are flowers. Some flowers are red.\nConclusion I: Some roses are red.\nConclusion II: Some red things are flowers.",
+          "image": null,
+          "options": ["Only Conclusion I follows", "Only Conclusion II follows", "Both conclusions follow", "Neither conclusion follows"],
+          "answer": 1,
+          "solution": "Conclusion I: We cannot conclude that some roses are red just because some flowers are red and all roses are flowers. The 'some red flowers' may not be roses. So Conclusion I does NOT follow.\nConclusion II: 'Some flowers are red' directly means 'some red things are flowers'. So Conclusion II FOLLOWS."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Result — Quick Mock</title>
+  <meta name="description" content="Your SSC CGL Mock Test results with detailed section-wise analysis and question review." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="result-wrapper">
+
+  <!-- ══ HERO BANNER ════════════════════════════════════════════════════ -->
+  <div class="result-hero">
+    <!-- Decorative orbs -->
+    <div class="result-hero-orb orb-1"></div>
+    <div class="result-hero-orb orb-2"></div>
+
+    <!-- Theme Toggle (top-right) -->
+    <div style="position:absolute; top:1.1rem; right:1.25rem; z-index:10">
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme">☀️</button>
+    </div>
+
+    <div class="result-hero-content">
+      <div class="result-complete-badge">✅ Test Completed</div>
+      <h1 class="result-test-name" id="result-test-name">Mock Test Results</h1>
+      <p class="result-test-meta" id="result-test-meta">Loading…</p>
+    </div>
+  </div>
+
+  <!-- ══ BODY ═══════════════════════════════════════════════════════════ -->
+  <div class="result-body">
+
+    <!-- ── Score Card ──────────────────────────────────────────────── -->
+    <div class="score-main-card">
+
+      <!-- Dial -->
+      <div class="score-dial-wrap">
+        <div class="score-dial" id="score-dial" style="--pct:0">
+          <div class="score-dial-inner">
+            <span class="score-number-big" id="score-number-big">0</span>
+            <span class="score-out-of"    id="score-out-of">/ 0</span>
+          </div>
+        </div>
+        <div class="score-dial-label">Total Score</div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="score-grid">
+        <div class="score-stat-box">
+          <span class="score-stat-val" id="stat-correct-val"     style="color:var(--success)">0</span>
+          <span class="score-stat-lbl">Correct</span>
+        </div>
+        <div class="score-stat-box">
+          <span class="score-stat-val" id="stat-wrong-val"       style="color:var(--danger)">0</span>
+          <span class="score-stat-lbl">Wrong</span>
+        </div>
+        <div class="score-stat-box">
+          <span class="score-stat-val" id="stat-unattempted-val" style="color:var(--text-3)">0</span>
+          <span class="score-stat-lbl">Skipped</span>
+        </div>
+        <div class="score-stat-box">
+          <span class="score-stat-val" id="stat-accuracy-val"    style="color:var(--primary)">0%</span>
+          <span class="score-stat-lbl">Accuracy</span>
+        </div>
+      </div>
+
+    </div><!-- /score-main-card -->
+
+    <!-- ── Action Buttons ──────────────────────────────────────────── -->
+    <div class="result-action-bar">
+      <button class="btn btn-primary btn-lg" onclick="reAttempt()">
+        🔁 Re-attempt Test
+      </button>
+      <button class="btn btn-outline btn-lg" onclick="goHome()">
+        🏠 Back to Home
+      </button>
+    </div>
+
+    <!-- ── Section Breakdown ───────────────────────────────────────── -->
+    <div class="section-title-bar">📊 Section-wise Breakdown</div>
+
+    <table class="breakdown-table">
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th style="text-align:center">Total Qs</th>
+          <th style="text-align:center">✓ Correct</th>
+          <th style="text-align:center">✗ Wrong</th>
+          <th style="text-align:center">— Skipped</th>
+          <th style="text-align:center">Score</th>
+        </tr>
+      </thead>
+      <tbody id="breakdown-tbody">
+        <!-- Filled by JS -->
+      </tbody>
+    </table>
+
+    <!-- ── Question Review ──────────────────────────────────────────── -->
+    <div class="section-title-bar">🔍 Question Review</div>
+
+    <div id="question-review-container">
+      <!-- Filled by JS -->
+    </div>
+
+    <!-- Bottom spacer + action buttons (again at bottom) -->
+    <div class="result-action-bar" style="margin-top:0.5rem">
+      <button class="btn btn-primary btn-lg" onclick="reAttempt()">
+        🔁 Re-attempt Test
+      </button>
+      <button class="btn btn-outline btn-lg" onclick="goHome()">
+        🏠 Back to Home
+      </button>
+    </div>
+
+  </div><!-- /result-body -->
+
+</div><!-- /result-wrapper -->
+
+<script src="js/state.js"></script>
+<script src="js/result.js"></script>
+</body>
+</html>

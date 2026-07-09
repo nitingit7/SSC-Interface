@@ -1,0 +1,199 @@
+{
+  "test_type": "full",
+  "title": "SSC CGL Tier 1 — Full Mock Test 01",
+  "marking": {
+    "correct": 2,
+    "wrong": -0.5,
+    "unattempted": 0
+  },
+  "sections": [
+    {
+      "id": "reasoning",
+      "name": "General Intelligence & Reasoning",
+      "time_minutes": 15,
+      "questions": [
+        {
+          "id": "r1",
+          "text": "In a certain code language, 'APPLE' is written as 'BQQMF'. Using the same code, how is 'MANGO' written?",
+          "image": null,
+          "options": ["NBOHO", "NBOHP", "NBOQP", "MBOHP"],
+          "answer": 1,
+          "solution": "Each letter is shifted one position forward in the alphabet. A→B, P→Q, P→Q, L→M, E→F. So APPLE = BQQMF. Applying the same rule: M→N, A→B, N→O, G→H, O→P. Therefore MANGO = NBOHP."
+        },
+        {
+          "id": "r2",
+          "text": "Find the odd one out from the following:\nA. Crow  B. Sparrow  C. Bat  D. Pigeon",
+          "image": null,
+          "options": ["Crow", "Sparrow", "Bat", "Pigeon"],
+          "answer": 2,
+          "solution": "Crow, Sparrow, and Pigeon are birds. Bat is a mammal (it belongs to the order Chiroptera). So Bat is the odd one out."
+        },
+        {
+          "id": "r3",
+          "text": "If 'South' is called 'East', 'East' is called 'North', 'North' is called 'West' and 'West' is called 'South', then in which direction does the sun set?",
+          "image": null,
+          "options": ["North", "South", "East", "West"],
+          "answer": 1,
+          "solution": "The sun sets in the West. According to the given code, 'West' is called 'South'. Therefore, the sun sets in the direction called 'South'."
+        },
+        {
+          "id": "r4",
+          "text": "Complete the series: 2, 6, 12, 20, 30, ?",
+          "image": null,
+          "options": ["36", "40", "42", "44"],
+          "answer": 2,
+          "solution": "The pattern is n×(n+1): 1×2=2, 2×3=6, 3×4=12, 4×5=20, 5×6=30, 6×7=42. The next term is 42."
+        },
+        {
+          "id": "r5",
+          "text": "A is the brother of B. C is the mother of A. D is the father of C. How is D related to B?",
+          "image": null,
+          "options": ["Uncle", "Grandfather", "Father", "Brother"],
+          "answer": 1,
+          "solution": "A is the brother of B → A and B are siblings. C is the mother of A → C is also the mother of B. D is the father of C → D is B's maternal grandfather. So D is the Grandfather of B."
+        }
+      ]
+    },
+    {
+      "id": "ga",
+      "name": "General Awareness",
+      "time_minutes": 15,
+      "questions": [
+        {
+          "id": "ga1",
+          "text": "Which Article of the Indian Constitution abolishes untouchability?",
+          "image": null,
+          "options": ["Article 14", "Article 15", "Article 17", "Article 21"],
+          "answer": 2,
+          "solution": "Article 17 of the Indian Constitution abolishes untouchability and forbids its practice in any form. The enforcement of any disability arising out of untouchability is an offence punishable by law."
+        },
+        {
+          "id": "ga2",
+          "text": "The Battle of Plassey (1757) was fought between the British East India Company and the Nawab of Bengal. Who was the Nawab of Bengal at that time?",
+          "image": null,
+          "options": ["Mir Jafar", "Mir Qasim", "Siraj-ud-Daulah", "Alivardi Khan"],
+          "answer": 2,
+          "solution": "The Battle of Plassey was fought on June 23, 1757 between Siraj-ud-Daulah (the last independent Nawab of Bengal) and the British East India Company under Robert Clive. The British won, largely due to the betrayal of Mir Jafar."
+        },
+        {
+          "id": "ga3",
+          "text": "Which planet in our solar system has the most moons?",
+          "image": null,
+          "options": ["Jupiter", "Saturn", "Uranus", "Neptune"],
+          "answer": 1,
+          "solution": "Saturn has the most known moons in our solar system, with over 140 confirmed moons as of recent discoveries, surpassing Jupiter which was previously considered to have the most moons."
+        },
+        {
+          "id": "ga4",
+          "text": "The Palk Strait separates India from which country?",
+          "image": null,
+          "options": ["Bangladesh", "Myanmar", "Sri Lanka", "Maldives"],
+          "answer": 2,
+          "solution": "The Palk Strait is a strait between the Tamil Nadu state of India and the Mannar district of the Northern Province of Sri Lanka. It connects the Bay of Bengal in the northeast with the Palk Bay in the southwest."
+        },
+        {
+          "id": "ga5",
+          "text": "Which of the following is NOT a greenhouse gas?",
+          "image": null,
+          "options": ["Carbon Dioxide (CO₂)", "Methane (CH₄)", "Nitrous Oxide (N₂O)", "Nitrogen (N₂)"],
+          "answer": 3,
+          "solution": "Nitrogen (N₂) is NOT a greenhouse gas. It makes up about 78% of Earth's atmosphere but does not absorb infrared radiation. The main greenhouse gases are CO₂, CH₄, N₂O, water vapour, and ozone."
+        }
+      ]
+    },
+    {
+      "id": "quant",
+      "name": "Quantitative Aptitude",
+      "time_minutes": 15,
+      "questions": [
+        {
+          "id": "q1",
+          "text": "A shopkeeper sells an article for ₹960, making a profit of 20%. What was the cost price of the article?",
+          "image": null,
+          "options": ["₹750", "₹780", "₹800", "₹820"],
+          "answer": 2,
+          "solution": "Let the Cost Price (CP) = x.\nSelling Price = CP × (1 + Profit%/100)\n960 = x × (1 + 20/100)\n960 = x × 1.20\nx = 960 / 1.20 = ₹800\nThe cost price is ₹800."
+        },
+        {
+          "id": "q2",
+          "text": "If the simple interest on a sum of ₹5,000 at 8% per annum for 3 years is calculated, what is the total amount (Principal + Interest)?",
+          "image": null,
+          "options": ["₹5,600", "₹6,000", "₹6,200", "₹6,500"],
+          "answer": 2,
+          "solution": "Simple Interest = (P × R × T) / 100 = (5000 × 8 × 3) / 100 = ₹1,200.\nTotal Amount = Principal + SI = 5000 + 1200 = ₹6,200."
+        },
+        {
+          "id": "q3",
+          "text": "The average of five numbers is 42. If one number is excluded, the average of the remaining four numbers becomes 40. What is the excluded number?",
+          "image": null,
+          "options": ["48", "50", "52", "54"],
+          "answer": 1,
+          "solution": "Sum of 5 numbers = 5 × 42 = 210.\nSum of 4 numbers (after exclusion) = 4 × 40 = 160.\nExcluded number = 210 − 160 = 50."
+        },
+        {
+          "id": "q4",
+          "text": "A can complete a work in 12 days and B can complete the same work in 18 days. Working together, how many days will they take to complete the work?",
+          "image": null,
+          "options": ["6 days", "7 days", "7.2 days", "8 days"],
+          "answer": 2,
+          "solution": "A's one day work = 1/12, B's one day work = 1/18.\nCombined one day work = 1/12 + 1/18 = 3/36 + 2/36 = 5/36.\nDays to complete = 36/5 = 7.2 days."
+        },
+        {
+          "id": "q5",
+          "text": "What is the value of √(0.0256)?",
+          "image": null,
+          "options": ["0.016", "0.16", "1.6", "0.0016"],
+          "answer": 1,
+          "solution": "√(0.0256) = √(256/10000) = √256 / √10000 = 16/100 = 0.16."
+        }
+      ]
+    },
+    {
+      "id": "english",
+      "name": "English Comprehension",
+      "time_minutes": 15,
+      "questions": [
+        {
+          "id": "e1",
+          "text": "Choose the word most SIMILAR in meaning to the word: ELOQUENT",
+          "image": null,
+          "options": ["Incoherent", "Articulate", "Hesitant", "Silent"],
+          "answer": 1,
+          "solution": "ELOQUENT means fluent and persuasive in speaking or writing. ARTICULATE also means able to express thoughts and feelings clearly and effectively. So 'Articulate' is the correct synonym."
+        },
+        {
+          "id": "e2",
+          "text": "Choose the word most OPPOSITE in meaning to the word: BENEVOLENT",
+          "image": null,
+          "options": ["Kind", "Generous", "Malevolent", "Charitable"],
+          "answer": 2,
+          "solution": "BENEVOLENT means well-meaning and kindly. Its antonym is MALEVOLENT, which means having or showing a wish to do evil to others."
+        },
+        {
+          "id": "e3",
+          "text": "Select the option that can substitute the underlined segment: 'She is one of the best students who has ever studied in this college.'",
+          "image": null,
+          "options": ["who have ever studied", "whom has ever studied", "who had ever studied", "No improvement needed"],
+          "answer": 0,
+          "solution": "The antecedent of the relative pronoun 'who' is 'students' (plural), not 'one'. Therefore, the verb should be plural: 'have'. The correct form is 'one of the best students who HAVE ever studied'."
+        },
+        {
+          "id": "e4",
+          "text": "Fill in the blank with the correct preposition: 'He is very good _______ playing chess.'",
+          "image": null,
+          "options": ["in", "at", "on", "for"],
+          "answer": 1,
+          "solution": "The correct preposition to use with 'good' when referring to skills or activities is 'at'. We say 'good AT something'. So the correct answer is 'He is very good AT playing chess.'"
+        },
+        {
+          "id": "e5",
+          "text": "Select the correctly spelt word:",
+          "image": null,
+          "options": ["Accomodation", "Accommodation", "Acommodation", "Accommodetion"],
+          "answer": 1,
+          "solution": "The correct spelling is 'Accommodation' — with double 'c' and double 'm'. A common mistake is to use only one 'c' or one 'm'."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exam — Quick Mock</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/tb_style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="tb-exam-page">
+
+<!-- ── Header Row 1 ── -->
+<header class="tb-h1">
+  <div class="tb-h1-left">
+    <div class="tb-logo-sm">
+      <span class="tb-logo-mark">📋</span> testbook
+    </div>
+    <span class="tb-exam-subtitle" id="tb-exam-subtitle">Loading Test...</span>
+    <div class="tb-zoom-group">
+      <button class="tb-zoom-btn" id="btn-zoom-in" title="Zoom In">Zoom (+)</button>
+      <button class="tb-zoom-btn" id="btn-zoom-out" title="Zoom Out">Zoom (-)</button>
+    </div>
+  </div>
+
+  <div class="tb-h1-center">
+    <div class="tb-exam-title" id="exam-title-text">Mock Test</div>
+    <div class="tb-roll-no">Roll No : 917827219050</div>
+  </div>
+
+  <div class="tb-h1-right">
+    <button class="tb-ctrl-btn" id="btn-quit" title="Quit Exam" style="color: #d32f2f; border-color: #d32f2f; font-weight: bold; width: auto; padding: 0 10px;">Quit</button>
+    <button class="tb-ctrl-btn" id="btn-fullscreen" title="Fullscreen">⛶</button>
+    <div class="tb-timer-block">
+      <span class="tb-timer-lbl" id="timer-label">Time Left</span>
+      <span class="tb-timer-val" id="timer-text">--:--</span>
+    </div>
+    <div class="tb-photos">
+      <div class="tb-photo">👤<span>Registration Photo</span></div>
+      <div class="tb-photo">👤<span>Captured Photo</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Header Row 2 ── -->
+<header class="tb-h2">
+  <div class="tb-h2-left">
+    <button class="tb-nav-link" id="btn-symbols">SYMBOLS</button>
+    <span class="tb-divider">|</span>
+    <button class="tb-nav-link" id="btn-instructions">INSTRUCTIONS</button>
+    <span class="tb-divider">|</span>
+    <button class="tb-nav-link tb-nav-bold" id="btn-summary">OVERALL TEST SUMMARY</button>
+  </div>
+
+  <div class="tb-parts-tabs" id="section-tabs" role="tablist">
+    <!-- Rendered by JS -->
+  </div>
+
+  <div class="tb-h2-right">
+    <button class="tb-action-btn" id="btn-mark">Mark for Review</button>
+    <button class="tb-action-btn" id="btn-next">Save &amp; Next</button>
+    <button class="tb-action-btn" id="btn-submit-section" style="display:none">Submit Section</button>
+    <button class="tb-action-btn" id="btn-submit-test">Submit Test</button>
+  </div>
+
+  <div class="tb-total-answered">
+    Total Questions Answered: <span class="tb-ans-count" id="tb-total-ans-val">0</span>
+  </div>
+</header>
+
+<!-- ── Main Body ── -->
+<div class="tb-body" id="tb-main-body">
+
+  <!-- Question Panel -->
+  <main class="tb-q-panel" id="question-panel">
+    <div class="tb-q-topbar">
+      <span class="tb-q-num" id="q-num-badge">Question No. 1</span>
+    </div>
+    
+    <div class="tb-q-meta-bar">
+      <div class="tb-lang-label">
+        Select Language
+        <select class="tb-lang-sel"><option>English</option></select>
+      </div>
+      <button class="tb-report-btn">⚠ Report</button>
+    </div>
+
+    <div class="tb-q-box" id="question-card">
+      <div class="tb-q-text" id="question-text">Loading question…</div>
+      <img class="tb-q-img" id="question-image" src="" alt="Question diagram" style="display:none" />
+    </div>
+
+    <div class="tb-opts" id="options-list" role="radiogroup">
+      <!-- Rendered by JS -->
+    </div>
+  </main>
+
+  <!-- Sidebar -->
+  <aside class="tb-sidebar" id="exam-sidebar">
+    <div class="tb-sb-sec-hdr">
+      <span class="tb-tri" id="btn-collapse-sidebar" title="Collapse/Expand">▶</span>
+      <span class="tb-sb-sec-name" id="sidebar-section-label">Section</span>
+    </div>
+
+    <div class="tb-pal-grid" id="palette-grid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div class="tb-analysis-box">
+      <div class="tb-analysis-hdr" id="analysis-hdr-title">PART-A Analysis</div>
+      <table class="tb-analysis-tbl">
+        <tr>
+          <td class="tb-an-label">Answered</td>
+          <td class="tb-an-count" id="an-ans">0</td>
+        </tr>
+        <tr>
+          <td class="tb-an-label">Not Answered</td>
+          <td class="tb-an-count" style="background:#ffeb3b" id="an-notans">0</td>
+        </tr>
+        <tr>
+          <td class="tb-an-label">Mark for Review</td>
+          <td class="tb-an-count" id="an-mark">0</td>
+        </tr>
+      </table>
+    </div>
+  </aside>
+
+</div>
+
+<!-- Overlays / Panels (Hidden by default) -->
+<div class="tb-panel-overlay" id="panel-overlay"></div>
+<div class="tb-panel" id="side-panel">
+  <div class="tb-panel-hdr">
+    <span id="panel-title">Symbols</span>
+    <button class="tb-panel-close" id="btn-close-panel">✕</button>
+  </div>
+  <div class="tb-panel-body" id="panel-content">
+    <!-- Populated dynamically -->
+  </div>
+</div>
+
+
+
+<!-- Submit Modal -->
+<div class="modal-overlay" id="modal-overlay" style="display:none; z-index:9999; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center;">
+  <div class="modal" style="background:#fff; color:#333; width: 800px; max-width: 95vw; box-shadow: 0 4px 16px rgba(0,0,0,0.2); font-family: Arial, sans-serif; padding: 0; border-radius: 8px; overflow: hidden;">
+    <div style="padding: 15px; border-bottom: 1px solid #e0e0e0; text-align: center;">
+      <h3 style="margin:0; font-size: 1rem; color: #555; font-weight: normal;">Submit your test</h3>
+    </div>
+    
+    <div style="padding: 0;">
+      <table id="submit-summary-table" style="width: 100%; border-collapse: collapse; text-align: center;">
+        <thead>
+          <tr style="background: #00bcd4; color: #fff;">
+            <th style="padding: 12px; border: 1px solid #e0e0e0; font-weight: bold;">Section</th>
+            <th style="padding: 12px; border: 1px solid #e0e0e0; font-weight: bold;">No. of questions</th>
+            <th style="padding: 12px; border: 1px solid #e0e0e0; font-weight: bold;">Answered</th>
+            <th style="padding: 12px; border: 1px solid #e0e0e0; font-weight: bold;">Not Answered</th>
+            <th style="padding: 12px; border: 1px solid #e0e0e0; font-weight: bold;">Marked for Review</th>
+            <th style="padding: 12px; border: 1px solid #e0e0e0; font-weight: bold;">Not Visited</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Populated dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal-actions" style="display:flex; justify-content:flex-end; gap:10px; padding: 15px; border-top: 1px solid #e0e0e0;">
+      <button class="tb-action-btn" id="modal-cancel" style="background:#00bcd4; border-radius: 2px; padding: 6px 16px;">Close</button>
+      <button class="tb-action-btn" id="modal-confirm" style="background:#00bcd4; border-radius: 2px; padding: 6px 16px;">Submit</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/state.js"></script>
+<script src="js/exam.js"></script>
+</body>
+</html>
