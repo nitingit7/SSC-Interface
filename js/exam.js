@@ -387,7 +387,7 @@ function renderPalette() {
     if (answered && marked)              cls = 'st-answered-marked';
     if (!visited)                        cls = 'st-not-visited';
 
-    return `<button class="tb-pal-num ${cls} ${isActive ? 'pal-active' : ''}" onclick="jumpToQuestion(${i})">${i + 1}</button>`;
+    return `<button class="tb-pal-num ${cls}" onclick="jumpToQuestion(${i})">${i + 1}</button>`;
   }).join('');
 }
 
