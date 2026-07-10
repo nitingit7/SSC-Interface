@@ -253,6 +253,16 @@ function renderQuestionReview(results) {
   }
 }
 
+// ─── Analyse Solution ─────────────────────────────────────────────────────────
+function analyseSolution() {
+  state.currentSectionIndex = 0;
+  state.currentQuestionIndex = 0;
+  State.set(state);
+  
+  sessionStorage.setItem('qm_analysis_mode', 'true');
+  window.location.href = 'exam.html';
+}
+
 // ─── Re-Attempt ───────────────────────────────────────────────────────────────
 function reAttempt() {
   const confirmed = confirm(
@@ -260,6 +270,7 @@ function reAttempt() {
   );
   if (!confirmed) return;
 
+  sessionStorage.removeItem('qm_analysis_mode');
   // Re-init from same testData
   State.initFromTest(state.testData);
   window.location.href = 'exam.html';
@@ -267,6 +278,7 @@ function reAttempt() {
 
 // ─── Go Home ──────────────────────────────────────────────────────────────────
 function goHome() {
+  sessionStorage.removeItem('qm_analysis_mode');
   State.clear();
   window.location.href = 'index.html';
 }

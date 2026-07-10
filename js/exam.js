@@ -42,12 +42,22 @@ function setupUI() {
   document.getElementById('btn-zoom-out').addEventListener('click', () => setZoom(currentZoom - 0.1));
   
   document.getElementById('btn-fullscreen').addEventListener('click', toggleFullscreen);
-  document.getElementById('btn-quit').addEventListener('click', () => {
-    if (confirm('Are you sure you want to quit the test? All progress will be lost.')) {
-      State.clear();
-      window.location.href = 'index.html';
-    }
-  });
+  
+  const btnQuit = document.getElementById('btn-quit');
+  if (isAnalysisMode) {
+    btnQuit.textContent = 'Back to Results';
+    btnQuit.title = 'Back to Results';
+    btnQuit.addEventListener('click', () => {
+      window.location.href = 'result.html';
+    });
+  } else {
+    btnQuit.addEventListener('click', () => {
+      if (confirm('Are you sure you want to quit the test? All progress will be lost.')) {
+        State.clear();
+        window.location.href = 'index.html';
+      }
+    });
+  }
 
   // Scroll lock warning
   document.body.style.overflow = 'hidden';
@@ -60,10 +70,42 @@ function setupUI() {
 
   document.getElementById('btn-collapse-sidebar').addEventListener('click', toggleSidebar);
 
-  document.getElementById('btn-next').addEventListener('click', saveAndNext);
-  document.getElementById('btn-mark').addEventListener('click', markAndNext);
-  document.getElementById('btn-submit-section').addEventListener('click', () => openSubmitModal(false));
-  document.getElementById('btn-submit-test').addEventListener('click', () => openSubmitModal(true));
+  const btnNext = document.getElementById('btn-next');
+  const btnMark = document.getElementById('btn-mark');
+  const btnSubmitSec = document.getElementById('btn-submit-section');
+  const btnSubmitTest = document.getElementById('btn-submit-test');
+
+  btnNext.addEventListener('click', saveAndNext);
+  btnMark.addEventListener('click', markAndNext);
+  btnSubmitSec.addEventListener('click', () => openSubmitModal(false));
+  btnSubmitTest.addEventListener('click', () => openSubmitModal(true));
+
+  if (isAnalysisMode) {
+    document.body.classList.add('analysis-mode');
+    btnNext.textContent = 'Next';
+    btnMark.style.display = 'none';
+    btnSubmitSec.style.display = 'none';
+    btnSubmitTest.style.display = 'none';
+
+    // Add Toggle Highlights button
+    const btnToggle = document.createElement('button');
+    btnToggle.className = 'tb-action-btn';
+    btnToggle.id = 'btn-toggle-highlights';
+    
+    // Read state from sessionStorage
+    const isHidden = sessionStorage.getItem('qm_hide_highlights') === 'true';
+    btnToggle.textContent = isHidden ? 'Show Highlights' : 'Hide Highlights';
+    
+    btnToggle.onclick = () => {
+      const currentlyHidden = sessionStorage.getItem('qm_hide_highlights') === 'true';
+      sessionStorage.setItem('qm_hide_highlights', currentlyHidden ? 'false' : 'true');
+      btnToggle.textContent = currentlyHidden ? 'Hide Highlights' : 'Show Highlights';
+      renderQuestion(); // Re-render to apply/remove highlights
+    };
+    
+    // Insert before Next button
+    btnNext.parentNode.insertBefore(btnToggle, btnNext);
+  }
 
   document.getElementById('modal-cancel').addEventListener('click', closeModal);
   document.getElementById('modal-confirm').addEventListener('click', confirmSubmit);
@@ -144,13 +186,18 @@ function renderHeader() {
   }).join('');
 
   // Update Submit buttons
-  const isLastSec = state.currentSectionIndex === state.testData.sections.length - 1;
-  if (isFullTest && !isLastSec) {
-    document.getElementById('btn-submit-section').style.display = 'block';
+  if (isAnalysisMode) {
+    document.getElementById('btn-submit-section').style.display = 'none';
     document.getElementById('btn-submit-test').style.display = 'none';
   } else {
-    document.getElementById('btn-submit-section').style.display = 'none';
-    document.getElementById('btn-submit-test').style.display = 'block';
+    const isLastSec = state.currentSectionIndex === state.testData.sections.length - 1;
+    if (isFullTest && !isLastSec) {
+      document.getElementById('btn-submit-section').style.display = 'block';
+      document.getElementById('btn-submit-test').style.display = 'none';
+    } else {
+      document.getElementById('btn-submit-section').style.display = 'none';
+      document.getElementById('btn-submit-test').style.display = 'block';
+    }
   }
 }
 
@@ -175,9 +222,20 @@ function enterSection(index, resetQuestion = true) {
   startTimer();
 }
 
+const isAnalysisMode = sessionStorage.getItem('qm_analysis_mode') === 'true';
+
 // ─── Timer ───────────────────────────────────────────────────────────────────
 function startTimer() {
   if (timerInterval) clearInterval(timerInterval);
+
+  if (isAnalysisMode) {
+    const timerTxt = document.getElementById('timer-text');
+    if (timerTxt) {
+      timerTxt.textContent = 'Analysis Mode';
+      timerTxt.className = 'tb-timer-val';
+    }
+    return;
+  }
 
   const sec = curSection();
   const totalMs = sec.time_minutes * 60 * 1000;
@@ -203,6 +261,13 @@ function startTimer() {
     timerTxt.className = 'tb-timer-val';
     if (remSec <= 60)       timerTxt.classList.add('alert');
     else if (remSec <= 300) timerTxt.classList.add('warn');
+
+    // Track time for current question
+    const q = curQuestion();
+    if (state.questionTimeTaken[sec.id] && state.questionTimeTaken[sec.id][q.id] !== undefined) {
+      state.questionTimeTaken[sec.id][q.id] += 1;
+      save();
+    }
 
     if (remMs === 0) {
       clearInterval(timerInterval);
@@ -231,7 +296,33 @@ function renderQuestion() {
     save();
   }
 
-  document.getElementById('q-num-badge').textContent = `Question No. ${state.currentQuestionIndex + 1}`;
+  let badgeText = `Question No. ${state.currentQuestionIndex + 1}`;
+  if (isAnalysisMode) {
+    if (state.questionTimeTaken[sid] && state.questionTimeTaken[sid][qid] !== undefined) {
+      badgeText += ` (Time Taken: ${state.questionTimeTaken[sid][qid]}s)`;
+    }
+    
+    // Status text
+    const selectedIdx = state.answers[sid][qid];
+    let statusText = 'Skipped';
+    if (selectedIdx !== null && selectedIdx !== undefined) {
+      statusText = (selectedIdx === q.answer) ? 'Correct' : 'Wrong';
+    }
+    
+    // Add color logic for status badge based on status
+    const statusBadge = document.getElementById('q-status-badge');
+    if (statusBadge) {
+      statusBadge.textContent = statusText;
+      if (statusText === 'Correct') {
+        statusBadge.style.color = '#4caf50';
+      } else if (statusText === 'Wrong') {
+        statusBadge.style.color = '#f44336';
+      } else {
+        statusBadge.style.color = '#757575';
+      }
+    }
+  }
+  document.getElementById('q-num-badge').textContent = badgeText;
   document.getElementById('question-text').textContent = q.text;
 
   const imgEl = document.getElementById('question-image');
@@ -278,10 +369,42 @@ function renderOptions(q, sid) {
   
   list.innerHTML = q.options.map((opt, i) => {
     const isSelected = selectedIdx === i;
+    const isCorrectAnswer = q.answer === i;
+    
+    let extraClass = isSelected ? 'tb-selected' : '';
+    let clickAttr = `onclick="selectAnswer(${i})" style="cursor:pointer"`;
+    let labelHtml = '';
+    
+    if (isAnalysisMode) {
+      clickAttr = ''; // Disable clicking
+      const isHidden = sessionStorage.getItem('qm_hide_highlights') === 'true';
+
+      if (isHidden) {
+        extraClass = ''; // Remove selected class so it looks fresh
+      } else {
+        if (isCorrectAnswer) {
+          extraClass += ' opt-correct';
+          // If skipped, put the dot on the correct answer
+          if (selectedIdx === null || selectedIdx === undefined) {
+            extraClass += ' tb-selected';
+          }
+        }
+        if (isSelected && !isCorrectAnswer) {
+          extraClass += ' opt-wrong';
+        }
+        
+        if (isSelected) {
+          const lblClass = isCorrectAnswer ? 'correct-lbl' : 'wrong-lbl';
+          labelHtml = `<span class="your-ans-lbl ${lblClass}">Your Answer</span>`;
+        }
+      }
+    }
+
     return `
-      <div class="tb-opt ${isSelected ? 'tb-selected' : ''}">
-        <div class="tb-opt-radio" onclick="selectAnswer(${i})" style="cursor:pointer"></div>
+      <div class="tb-opt ${extraClass}">
+        <div class="tb-opt-radio" ${clickAttr}></div>
         <div class="tb-opt-text" id="opt-txt-${i}">${opt}</div>
+        ${labelHtml}
       </div>
     `;
   }).join('');

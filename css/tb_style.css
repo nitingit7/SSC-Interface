@@ -174,31 +174,31 @@
 .tb-report-btn:hover { color: #d32f2f; background: #fce4ec; }
 [data-theme="dark"] .tb-report-btn:hover { background: rgba(239,68,68,0.15); }
 
-.tb-q-box {
-  margin: 12px 16px 8px; padding: 16px 18px;
-  border: 1px solid #e0e0e0; border-radius: 4px;
-  background: #fafafa; flex-shrink: 0;
+.tb-q-wrapper {
+  margin: 12px 16px; border: 1px solid #e0e0e0; border-radius: 4px;
+  background: #fff; flex-shrink: 0;
 }
-[data-theme="dark"] .tb-q-box { border-color: #2d3748; background: #1f2340; }
+[data-theme="dark"] .tb-q-wrapper { border-color: #2d3748; background: #1f2340; }
+
+.tb-q-box { padding: 16px 18px; flex-shrink: 0; }
 .tb-q-text { font-family: Arial, sans-serif; font-size: 1.1em; line-height: 1.4; color: #212121; margin: 0; word-break: break-word; }
 [data-theme="dark"] .tb-q-text { color: #f1f5f9; }
 .tb-q-img { max-width: 100%; max-height: 280px; border-radius: 4px; margin-top: 10px; border: 1px solid #e0e0e0; }
 
 /* Options */
-.tb-opts { margin: 0 16px 16px; border: 1px solid #e0e0e0; border-radius: 4px; overflow: hidden; flex-shrink: 0; }
-[data-theme="dark"] .tb-opts { border-color: #2d3748; }
+.tb-opts { margin: 0; border: none; overflow: hidden; flex-shrink: 0; padding-bottom: 16px; }
 .tb-opt {
   display: flex; align-items: flex-start; gap: 14px;
-  padding: 13px 16px; background: #fff;
-  border-bottom: 1px solid #ebebeb; cursor: default;
-  transition: background 0.1s; user-select: none;
+  padding: 8px 30px; background: transparent;
+  border: none; cursor: default;
+  user-select: none;
 }
-.tb-opt:last-child { border-bottom: none; }
-.tb-opt:hover { background: #f0f6ff; }
-[data-theme="dark"] .tb-opt { background: #1f2340; border-color: #2d3748; }
-[data-theme="dark"] .tb-opt:hover { background: #252848; }
-.tb-opt.tb-selected { background: #e3f0ff; }
-[data-theme="dark"] .tb-opt.tb-selected { background: rgba(99,102,241,0.14); }
+.tb-opt:hover { background: transparent; }
+[data-theme="dark"] .tb-opt { background: transparent; border-color: transparent; }
+[data-theme="dark"] .tb-opt:hover { background: transparent; }
+.tb-opt.tb-selected { background: transparent; }
+[data-theme="dark"] .tb-opt.tb-selected { background: transparent; }
+
 .tb-opt-radio {
   width: 18px; height: 18px; border-radius: 50%; border: 2px solid #aaa;
   flex-shrink: 0; margin-top: 2px; transition: all 0.1s;
@@ -207,7 +207,32 @@
 [data-theme="dark"] .tb-opt-radio { border-color: #555; }
 [data-theme="dark"] .tb-opt.tb-selected .tb-opt-radio { border-color: #6366f1; background: #6366f1; box-shadow: inset 0 0 0 3px #1f2340; }
 .tb-opt-text { font-family: Arial, sans-serif; font-size: 1em; color: #212121; line-height: 1.4; flex: 1; }
+
+.tb-opt.opt-correct { background: #e8f5e9; border: 1px solid #4caf50; border-radius: 4px; margin: 4px 16px; padding: 8px 13px; width: calc(100% - 32px); }
+.tb-opt.opt-wrong { background: #ffebee; border: 1px solid #f44336; border-radius: 4px; margin: 4px 16px; padding: 8px 13px; width: calc(100% - 32px); }
+[data-theme="dark"] .tb-opt.opt-correct { background: rgba(76,175,80,0.15); border-color: #4caf50; }
+[data-theme="dark"] .tb-opt.opt-wrong { background: rgba(244,67,54,0.15); border-color: #f44336; }
 [data-theme="dark"] .tb-opt-text { color: #f1f5f9; }
+
+.your-ans-lbl {
+  margin-left: auto;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #fff;
+  background: #757575; /* default */
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.your-ans-lbl.correct-lbl { background: #4caf50; }
+.your-ans-lbl.wrong-lbl { background: #f44336; }
+[data-theme="dark"] .your-ans-lbl { color: #fff; }
+
+body.analysis-mode .tb-opt:hover { background: #fff; border-color: #d0d0d0; }
+[data-theme="dark"] body.analysis-mode .tb-opt:hover { background: #1f2340; border-color: #374151; }
+body.analysis-mode .tb-opt.opt-correct:hover { background: #e8f5e9; border-color: #4caf50; }
+body.analysis-mode .tb-opt.opt-wrong:hover { background: #ffebee; border-color: #f44336; }
+[data-theme="dark"] body.analysis-mode .tb-opt.opt-correct:hover { background: rgba(76,175,80,0.15); border-color: #4caf50; }
+[data-theme="dark"] body.analysis-mode .tb-opt.opt-wrong:hover { background: rgba(244,67,54,0.15); border-color: #f44336; }
 
 /* ── Sidebar ─────────────────────────────────────────── */
 .tb-sidebar { width: 252px; flex-shrink: 0; background: #fff; display: flex; flex-direction: column; overflow: hidden; transition: width 0.2s ease; }

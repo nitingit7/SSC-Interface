@@ -41,6 +41,7 @@ const State = {
     const visitedQuestions = {};
     const sectionSubmitted = {};
     const sectionStartTime = {};
+    const questionTimeTaken = {}; // { sectionId: { questionId: seconds } }
 
     testData.sections.forEach(section => {
       answers[section.id] = {};
@@ -48,9 +49,11 @@ const State = {
       visitedQuestions[section.id] = [];
       sectionSubmitted[section.id] = false;
       sectionStartTime[section.id] = null; // Set when section is first entered
+      questionTimeTaken[section.id] = {};
 
       section.questions.forEach(q => {
         answers[section.id][q.id] = null; // null = unattempted
+        questionTimeTaken[section.id][q.id] = 0; // init to 0
       });
     });
 
@@ -64,6 +67,7 @@ const State = {
       visitedQuestions,                      // { sectionId: [questionId, ...] }
       sectionSubmitted,                      // { sectionId: boolean }
       sectionStartTime,                      // { sectionId: timestamp | null }
+      questionTimeTaken,                     // { sectionId: { questionId: seconds } }
       testCompleted: false,
     };
 

@@ -17,7 +17,7 @@
 <header class="tb-h1">
   <div class="tb-h1-left">
     <div class="tb-logo-sm">
-      <span class="tb-logo-mark">📋</span> testbook
+      <span class="tb-logo-mark">📋</span> practice
     </div>
     <span class="tb-exam-subtitle" id="tb-exam-subtitle">Loading Test...</span>
     <div class="tb-zoom-group">
@@ -28,7 +28,7 @@
 
   <div class="tb-h1-center">
     <div class="tb-exam-title" id="exam-title-text">Mock Test</div>
-    <div class="tb-roll-no">Roll No : 917827219050</div>
+    <div class="tb-roll-no">Roll No : 1234567890</div>
   </div>
 
   <div class="tb-h1-right">
@@ -76,25 +76,27 @@
 
   <!-- Question Panel -->
   <main class="tb-q-panel" id="question-panel">
-    <div class="tb-q-topbar">
-      <span class="tb-q-num" id="q-num-badge">Question No. 1</span>
-    </div>
-    
-    <div class="tb-q-meta-bar">
-      <div class="tb-lang-label">
-        Select Language
-        <select class="tb-lang-sel"><option>English</option></select>
+    <div class="tb-q-wrapper">
+      <div class="tb-q-wrapper-header" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; border-bottom: 1px solid #e0e0e0; flex-wrap: wrap; gap: 10px;">
+        <span class="tb-q-num" id="q-num-badge" style="flex: 1; font-weight: bold;">Question No. 1</span>
+        <span class="tb-q-status" id="q-status-badge" style="text-align: center; font-weight: bold;"></span>
+        <div class="tb-q-meta-bar" style="flex: 1; justify-content: flex-end; display: flex; gap: 12px; align-items: center; border: none; padding: 0;">
+          <div class="tb-lang-label" style="font-weight: bold; color: #000;">
+            Choose Language:
+            <select class="tb-lang-sel"><option>English</option></select>
+          </div>
+          <button class="tb-report-btn">⚠ Report</button>
+        </div>
       </div>
-      <button class="tb-report-btn">⚠ Report</button>
-    </div>
 
-    <div class="tb-q-box" id="question-card">
-      <div class="tb-q-text" id="question-text">Loading question…</div>
-      <img class="tb-q-img" id="question-image" src="" alt="Question diagram" style="display:none" />
-    </div>
-
-    <div class="tb-opts" id="options-list" role="radiogroup">
-      <!-- Rendered by JS -->
+      <div class="tb-q-box" id="question-card">
+        <div class="tb-q-text" id="question-text">Loading question…</div>
+        <img class="tb-q-img" id="question-image" src="" alt="Question diagram" style="display:none" />
+      </div>
+  
+      <div class="tb-opts" id="options-list" role="radiogroup">
+        <!-- Rendered by JS -->
+      </div>
     </div>
   </main>
 
