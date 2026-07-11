@@ -89,13 +89,25 @@
         </div>
       </div>
 
-      <div class="tb-q-box" id="question-card">
-        <div class="tb-q-text" id="question-text">Loading question…</div>
-        <img class="tb-q-img" id="question-image" src="" alt="Question diagram" style="display:none" />
+      <div id="scroll-lock-msg" style="display: none; background: #ffebee; color: #d32f2f; text-align: center; padding: 6px; font-size: 0.85rem; font-weight: bold; border-bottom: 1px solid #ffcdd2;">
+        Mouse scrolling is locked. Please use the scrollbar to scroll.
       </div>
-  
-      <div class="tb-opts" id="options-list" role="radiogroup">
-        <!-- Rendered by JS -->
+
+      <div id="q-layout-container" style="display: flex; flex-direction: row; align-items: stretch;">
+        <div id="passage-container" style="display: none; flex: 1; border-right: 1px solid #e0e0e0; padding: 16px 18px; overflow-y: auto; max-height: 500px;">
+          <div id="passage-text" style="font-family: Arial, sans-serif; font-size: 1.05em; line-height: 1.5; color: #212121; white-space: pre-wrap;"></div>
+        </div>
+        
+        <div id="question-content-container" style="flex: 1; overflow-y: auto; max-height: 500px;">
+          <div class="tb-q-box" id="question-card">
+            <div class="tb-q-text" id="question-text">Loading question…</div>
+            <img class="tb-q-img" id="question-image" src="" alt="Question diagram" style="display:none" />
+          </div>
+      
+          <div class="tb-opts" id="options-list" role="radiogroup">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
       </div>
     </div>
   </main>

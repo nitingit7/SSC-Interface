@@ -1,0 +1,58 @@
+{
+  "test_type": "sectional",
+  "title": "English Comprehension 06",
+  "total_marks": 50,
+  "marking": {
+    "correct": 2,
+    "wrong": -0.5,
+    "unattempted": 0
+  },
+  "sections": [
+    {
+      "id": "english",
+      "name": "English Comprehension",
+      "time_minutes": 15,
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Identify the segment in the sentence which contains a grammatical error:\n\nNeither the principal nor the teachers takes interest in the general welfare of the students.",
+          "image": null,
+          "passage": null,
+          "options": [
+            "Neither the principal",
+            "nor the teachers",
+            "takes interest in the general welfare",
+            "of the students."
+          ],
+          "answer": 2
+        },
+        {
+          "id": "q2",
+          "text": "Rearrange the given sentences to form a meaningful paragraph:\n\nA. However, the exact date of its construction is still unknown.\nB. The Great Wall of China is one of the most famous landmarks in the world.\nC. It was built to protect the Chinese Empire from invaders.\nD. Many people believe it can be seen from space, which is a common myth.",
+          "image": null,
+          "passage": null,
+          "options": [
+            "BCAD",
+            "BADC",
+            "CBAD",
+            "DBCA"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "q3",
+          "text": "According to the passage, the French are most likely to:",
+          "image": null,
+          "passage": "Directions [Set of 3 questions]: You have a passage with 3 questions following. Read the passage carefully and choose the best answer to each question out of the four alternatives and mark it.\n\nIt is no wonder that the notion of happiness has been taken into public ownership, given the remarkable spread of spiritual malaise around the globe. Around a third of American adults and close to half in Britain believe that they are sometimes depressed. Even so, more than half a century after the discovery of antidepressants, nobody really knows how they function.\n\nWork over which individuals have little control can heighten the risk of heart disease. So-called austerity has made people sicker and driven some to death. Vastly unequal nations such as the UK and the US breed mental health problems far more than more egalitarian ones such as Sweden.",
+          "options": [
+            "Downplay their happiness",
+            "Under report their dejectedness",
+            "Downplay their dejectedness",
+            "Not mentioned in the passage"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ]
+}

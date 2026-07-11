@@ -62,11 +62,16 @@ function setupUI() {
   // Scroll lock warning
   document.body.style.overflow = 'hidden';
   window.addEventListener('wheel', (e) => {
-    const isScrollable = e.target.closest('.tb-q-panel') || e.target.closest('.tb-pal-grid') || e.target.closest('.tb-panel-body');
-    if (!isScrollable && (e.deltaY > 0 || e.deltaY < 0)) {
-      showScrollToast();
+    e.preventDefault();
+    const msgEl = document.getElementById('scroll-lock-msg');
+    if (msgEl) {
+      msgEl.style.display = 'block';
+      clearTimeout(msgEl.hideTimeout);
+      msgEl.hideTimeout = setTimeout(() => {
+        msgEl.style.display = 'none';
+      }, 3000);
     }
-  });
+  }, { passive: false });
 
   document.getElementById('btn-collapse-sidebar').addEventListener('click', toggleSidebar);
 
@@ -125,8 +130,10 @@ function setZoom(val) {
   currentZoom = Math.max(0.8, Math.min(val, 1.5));
   const qCard = document.getElementById('question-card');
   const optList = document.getElementById('options-list');
+  const passageText = document.getElementById('passage-text');
   if (qCard) qCard.style.zoom = currentZoom;
   if (optList) optList.style.zoom = currentZoom;
+  if (passageText) passageText.style.zoom = currentZoom;
 }
 
 function showScrollToast() {
@@ -337,6 +344,19 @@ function renderQuestion() {
   }
   document.getElementById('q-num-badge').textContent = badgeText;
   document.getElementById('question-text').textContent = q.text;
+
+  const passageContainer = document.getElementById('passage-container');
+  const passageText = document.getElementById('passage-text');
+  if (q.passage) {
+    if (passageText.textContent !== q.passage) {
+      passageText.textContent = q.passage;
+      passageContainer.scrollTop = 0; // Reset scroll only on new passage
+    }
+    passageContainer.style.display = 'block';
+  } else {
+    passageContainer.style.display = 'none';
+    passageText.textContent = '';
+  }
 
   const imgEl = document.getElementById('question-image');
   if (q.image) {
