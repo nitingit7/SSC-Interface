@@ -473,11 +473,42 @@ function selectAnswer(optionIndex) {
 function saveAndNext() {
   const sec = curSection();
   const q   = curQuestion();
-  
   const sid = sec.id;
   const qid = q.id;
   
-  // Save temporary selection
+  if (isAnalysisMode) {
+    const filterEl = document.getElementById('palette-filter');
+    const filterVal = filterEl ? filterEl.value : 'all';
+    
+    let nextIdx = -1;
+    for (let i = state.currentQuestionIndex + 1; i < sec.questions.length; i++) {
+      if (filterVal === 'all') {
+        nextIdx = i;
+        break;
+      }
+      
+      const checkQ = sec.questions[i];
+      const answered = state.answers[sid][checkQ.id] !== null && state.answers[sid][checkQ.id] !== undefined;
+      let statusForFilter = 'skipped';
+      if (answered) {
+        statusForFilter = (state.answers[sid][checkQ.id] === checkQ.answer) ? 'correct' : 'wrong';
+      }
+      if (statusForFilter === filterVal) {
+        nextIdx = i;
+        break;
+      }
+    }
+    
+    if (nextIdx !== -1) {
+      state.currentQuestionIndex = nextIdx;
+      save();
+      renderQuestion();
+      renderPalette();
+    }
+    return;
+  }
+  
+  // Save temporary selection for test mode
   if (currentTempOption !== null) {
     state.answers[sid][qid] = currentTempOption;
   } else {
