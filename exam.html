@@ -55,11 +55,8 @@
     <button class="tb-nav-link tb-nav-bold" id="btn-summary">OVERALL TEST SUMMARY</button>
   </div>
 
-  <div class="tb-parts-tabs" id="section-tabs" role="tablist">
-    <!-- Rendered by JS -->
-  </div>
-
   <div class="tb-h2-right">
+    <button class="tb-action-btn" id="btn-prev" style="display:none">Previous</button>
     <button class="tb-action-btn" id="btn-mark">Mark for Review</button>
     <button class="tb-action-btn" id="btn-next">Save &amp; Next</button>
     <button class="tb-action-btn" id="btn-submit-section" style="display:none">Submit Section</button>
@@ -114,9 +111,9 @@
 
   <!-- Sidebar -->
   <aside class="tb-sidebar" id="exam-sidebar">
-    <div class="tb-sb-sec-hdr">
-      <span class="tb-tri" id="btn-collapse-sidebar" title="Collapse/Expand">▶</span>
-      <span class="tb-sb-sec-name" id="sidebar-section-label">Section</span>
+    <div class="tb-sb-sec-hdr" style="justify-content: flex-start; align-items: center; background: #f5f5f5; display: flex; gap: 8px;">
+      <span class="tb-tri" id="btn-collapse-sidebar" title="Collapse/Expand" style="cursor: pointer;">▶</span>
+      <span class="tb-sb-sec-name" id="sidebar-section-label" style="font-size: 0.9rem; font-weight: bold;">Section</span>
     </div>
 
     <div id="palette-filter-container" style="display:none; padding: 10px 12px; border-bottom: 1px solid #e0e0e0; font-size: 0.8rem; background: #f9f9f9;">

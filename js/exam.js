@@ -73,7 +73,47 @@ function setupUI() {
     }
   }, { passive: false });
 
-  document.getElementById('btn-collapse-sidebar').addEventListener('click', toggleSidebar);
+  const collapseBtn = document.getElementById('btn-collapse-sidebar');
+  if (collapseBtn) collapseBtn.addEventListener('click', toggleSidebar);
+
+  const btnPrev = document.getElementById('btn-prev');
+  if (btnPrev) {
+    btnPrev.addEventListener('click', () => {
+      const sec = curSection();
+      const sid = sec.id;
+      const qid = curQuestion().id;
+
+      if (isAnalysisMode) {
+        const filterEl = document.getElementById('palette-filter');
+        const filterVal = filterEl ? filterEl.value : 'all';
+        let prevIdx = -1;
+        for (let i = state.currentQuestionIndex - 1; i >= 0; i--) {
+          if (filterVal === 'all') { prevIdx = i; break; }
+          const checkQ = sec.questions[i];
+          const answered = state.answers[sid][checkQ.id] !== null && state.answers[sid][checkQ.id] !== undefined;
+          let statusForFilter = 'skipped';
+          if (answered) {
+            statusForFilter = (state.answers[sid][checkQ.id] === checkQ.answer) ? 'correct' : 'wrong';
+          }
+          if (statusForFilter === filterVal) { prevIdx = i; break; }
+        }
+        if (prevIdx !== -1) {
+          state.currentQuestionIndex = prevIdx;
+          save(); renderQuestion(); renderPalette();
+        }
+        return;
+      }
+
+      // Test Mode
+      if (currentTempOption !== null) state.answers[sid][qid] = currentTempOption;
+      else state.answers[sid][qid] = null;
+
+      if (state.currentQuestionIndex > 0) {
+        state.currentQuestionIndex--;
+        save(); renderQuestion(); renderPalette(); updateAnalysis();
+      }
+    });
+  }
 
   const btnNext = document.getElementById('btn-next');
   const btnMark = document.getElementById('btn-mark');
@@ -387,6 +427,15 @@ function renderQuestion() {
     btnMark.textContent = 'Mark for Review';
     btnMark.classList.remove('btn-pressed');
   }
+  
+  const btnPrev = document.getElementById('btn-prev');
+  if (btnPrev) {
+    if (state.currentQuestionIndex === 0) {
+      btnPrev.style.display = 'none';
+    } else {
+      btnPrev.style.display = 'inline-block';
+    }
+  }
 
   renderOptions(q, sid);
   renderPalette();
@@ -571,9 +620,7 @@ function renderPalette() {
   const sid = sec.id;
   const grid = document.getElementById('palette-grid');
   
-  const secName = state.testData.sections.length > 1 
-    ? `▶ ${sec.name}` 
-    : `▶ Test`;
+  const secName = sec.name || state.testData.title || 'Test';
   document.getElementById('sidebar-section-label').textContent = secName;
 
   const filterEl = document.getElementById('palette-filter');
