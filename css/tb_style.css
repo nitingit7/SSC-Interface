@@ -176,9 +176,10 @@
 
 .tb-q-wrapper {
   margin: 12px 16px; border: 1px solid #e0e0e0; border-radius: 4px;
-  background: #fff; flex-shrink: 0;
+  background: #fff; flex-shrink: 0; user-select: none;
 }
 [data-theme="dark"] .tb-q-wrapper { border-color: #2d3748; background: #1f2340; }
+body.analysis-mode .tb-q-wrapper { user-select: text; }
 
 .tb-q-box { padding: 16px 18px; flex-shrink: 0; }
 .tb-q-text { font-family: Arial, sans-serif; font-size: 1.1em; line-height: 1.4; color: #212121; margin: 0; word-break: break-word; }
@@ -261,10 +262,9 @@ body.analysis-mode .tb-opt.opt-wrong:hover { background: #ffebee; border-color: 
   aspect-ratio: 1; border-radius: 3px; border: none; cursor: pointer;
   font-size: 0.73rem; font-weight: 700; font-family: inherit;
   display: flex; align-items: center; justify-content: center;
-  color: #fff; transition: all 0.1s; position: relative; overflow: visible;
+  color: #fff; transition: none; position: relative; overflow: visible;
 }
-.tb-pal-num:hover { opacity: 0.8; transform: scale(1.08); }
-.tb-pal-num.pal-active { outline: 2.5px solid #111; outline-offset: 2px; transform: scale(1.06); }
+.tb-pal-num.pal-active { outline: 2.5px solid #111; outline-offset: 2px; }
 [data-theme="dark"] .tb-pal-num.pal-active { outline-color: #e2e8f0; }
 
 /* Palette Colors matching User Request */
@@ -273,6 +273,11 @@ body.analysis-mode .tb-opt.opt-wrong:hover { background: #ffebee; border-color: 
 .tb-pal-num.st-answered        { background: #008000; color: #fff; } /* Green */
 .tb-pal-num.st-marked          { background: #ff0000; color: #fff; } /* Red */
 .tb-pal-num.st-answered-marked { background: #ffff00; color: #000; } /* Yellow */
+
+/* Analysis Mode Palette Colors */
+.tb-pal-num.pal-correct { background: #008000; color: #fff; } /* Green */
+.tb-pal-num.pal-wrong   { background: #ff0000; color: #fff; } /* Red */
+.tb-pal-num.pal-skipped { background: #9e9e9e; color: #fff; } /* Grey */
 
 .tb-pal-num.st-marked::after,
 .tb-pal-num.st-answered-marked::after {

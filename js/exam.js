@@ -105,6 +105,16 @@ function setupUI() {
     
     // Insert before Next button
     btnNext.parentNode.insertBefore(btnToggle, btnNext);
+    
+    // Show palette filter
+    const filterContainer = document.getElementById('palette-filter-container');
+    if (filterContainer) {
+      filterContainer.style.display = 'block';
+      const filterEl = document.getElementById('palette-filter');
+      filterEl.addEventListener('change', () => {
+        renderPalette();
+      });
+    }
   }
 
   document.getElementById('modal-cancel').addEventListener('click', closeModal);
@@ -296,6 +306,10 @@ function renderQuestion() {
     save();
   }
 
+  // Initialize temporary option
+  const selectedIdx = state.answers[sid][qid];
+  currentTempOption = (selectedIdx !== undefined && selectedIdx !== null) ? selectedIdx : null;
+
   let badgeText = `Question No. ${state.currentQuestionIndex + 1}`;
   if (isAnalysisMode) {
     if (state.questionTimeTaken[sid] && state.questionTimeTaken[sid][qid] !== undefined) {
@@ -303,7 +317,6 @@ function renderQuestion() {
     }
     
     // Status text
-    const selectedIdx = state.answers[sid][qid];
     let statusText = 'Skipped';
     if (selectedIdx !== null && selectedIdx !== undefined) {
       statusText = (selectedIdx === q.answer) ? 'Correct' : 'Wrong';
@@ -362,7 +375,8 @@ function renderQuestion() {
 
 function renderOptions(q, sid) {
   const list = document.getElementById('options-list');
-  const selectedIdx = state.answers[sid][q.id];
+  const savedIdx = state.answers[sid][q.id];
+  const selectedIdx = isAnalysisMode ? savedIdx : currentTempOption;
 
   // Temporary selected answer logic for the current view (Testbook usually saves when you click Save & Next)
   // We will auto-save on select for simplicity, but visually distinct.
@@ -424,18 +438,15 @@ function renderOptions(q, sid) {
 }
 
 function selectAnswer(optionIndex) {
-  const sec = curSection();
-  const q   = curQuestion();
-  if (state.answers[sec.id][q.id] === optionIndex) {
-    state.answers[sec.id][q.id] = null; // Deselect if already selected
+  if (currentTempOption === optionIndex) {
+    currentTempOption = null; // Deselect if already selected
   } else {
-    state.answers[sec.id][q.id] = optionIndex;
+    currentTempOption = optionIndex;
   }
   
-  save();
+  const sec = curSection();
+  const q   = curQuestion();
   renderOptions(q, sec.id);
-  renderPalette();
-  updateAnalysis();
 }
 
 // ─── Actions ──────────────────────────────────────────────────────────────────
@@ -446,12 +457,19 @@ function saveAndNext() {
   const sid = sec.id;
   const qid = q.id;
   
+  // Save temporary selection
+  if (currentTempOption !== null) {
+    state.answers[sid][qid] = currentTempOption;
+  } else {
+    state.answers[sid][qid] = null;
+  }
+  
   if (state.currentQuestionIndex < sec.questions.length - 1) {
     state.currentQuestionIndex++;
     save();
     renderQuestion();
   } else {
-    // End of section
+    save(); // End of section
     const isLastSec = state.currentSectionIndex === state.testData.sections.length - 1;
     openSubmitModal(isLastSec);
   }
@@ -463,6 +481,13 @@ function markAndNext() {
   const sid = sec.id;
   const qid = q.id;
 
+  // Save temporary selection
+  if (currentTempOption !== null) {
+    state.answers[sid][qid] = currentTempOption;
+  } else {
+    state.answers[sid][qid] = null;
+  }
+
   if (state.markedForReview[sid].includes(qid)) {
     // Unmark and stay
     state.markedForReview[sid] = state.markedForReview[sid].filter(id => id !== qid);
@@ -472,13 +497,21 @@ function markAndNext() {
   }
   save();
   renderQuestion();
+  renderPalette();
+  updateAnalysis();
 }
 
 function jumpToQuestion(index) {
   if (index < 0 || index >= curSection().questions.length) return;
+  
+  // NOTE: We DO NOT save currentTempOption here. 
+  // Navigating away without clicking Save & Next discards the temporary selection.
+  
   state.currentQuestionIndex = index;
   save();
   renderQuestion();
+  renderPalette();
+  updateAnalysis();
 }
 
 // ─── Palette & Analysis ───────────────────────────────────────────────────────
@@ -492,6 +525,8 @@ function renderPalette() {
     : `▶ Test`;
   document.getElementById('sidebar-section-label').textContent = secName;
 
+  const filterEl = document.getElementById('palette-filter');
+  const filterVal = filterEl ? filterEl.value : 'all';
   let totalAns = 0;
   
   grid.innerHTML = sec.questions.map((q, i) => {
@@ -504,11 +539,30 @@ function renderPalette() {
     if (answered) totalAns++;
 
     let cls = 'st-not-visited';
-    if (visited && !answered && !marked) cls = 'st-not-answered';
-    if (answered && !marked)             cls = 'st-answered';
-    if (!answered && marked)             cls = 'st-marked';
-    if (answered && marked)              cls = 'st-answered-marked';
-    if (!visited)                        cls = 'st-not-visited';
+    let statusForFilter = 'all';
+
+    if (isAnalysisMode) {
+      if (!answered) {
+        cls = 'pal-skipped';
+        statusForFilter = 'skipped';
+      } else if (state.answers[sid][qid] === q.answer) {
+        cls = 'pal-correct';
+        statusForFilter = 'correct';
+      } else {
+        cls = 'pal-wrong';
+        statusForFilter = 'wrong';
+      }
+    } else {
+      if (visited && !answered && !marked) cls = 'st-not-answered';
+      if (answered && !marked)             cls = 'st-answered';
+      if (!answered && marked)             cls = 'st-marked';
+      if (answered && marked)              cls = 'st-answered-marked';
+      if (!visited)                        cls = 'st-not-visited';
+    }
+
+    if (isAnalysisMode && filterVal !== 'all' && statusForFilter !== filterVal) {
+      return `<button class="tb-pal-num ${cls}" style="display:none" onclick="jumpToQuestion(${i})">${i + 1}</button>`;
+    }
 
     return `<button class="tb-pal-num ${cls}" onclick="jumpToQuestion(${i})">${i + 1}</button>`;
   }).join('');
