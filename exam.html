@@ -14,107 +14,144 @@
 <body class="tb-exam-page">
 
 <!-- ── Header Row 1 ── -->
-<header class="tb-h1">
+<!-- ── Header Row 1 ── -->
+<!-- ── Header Row 1 ── -->
+<header class="tb-h1" style="background: #fff; display: flex; justify-content: space-between; padding: 5px 15px; align-items: center; border-bottom: 1px solid #ccc;">
   <div class="tb-h1-left">
-    <div class="tb-logo-sm">
-      <span class="tb-logo-mark">📋</span> practice
-    </div>
-    <span class="tb-exam-subtitle" id="tb-exam-subtitle">Loading Test...</span>
-    <div class="tb-zoom-group">
-      <button class="tb-zoom-btn" id="btn-zoom-in" title="Zoom In">Zoom (+)</button>
-      <button class="tb-zoom-btn" id="btn-zoom-out" title="Zoom Out">Zoom (-)</button>
+    <div class="tb-logo-sm" style="display: flex; align-items: center; justify-content: center; width: 50px; height: 50px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/200px-Emblem_of_India.svg.png" alt="Logo" style="max-width: 100%; max-height: 100%;" onerror="this.style.display='none';">
     </div>
   </div>
 
-  <div class="tb-h1-center">
-    <div class="tb-exam-title" id="exam-title-text">Mock Test</div>
-    <div class="tb-roll-no">Roll No : 1234567890</div>
+  <div class="tb-h1-center" style="text-align: center; flex: 1;">
+    <div class="tb-exam-title" id="exam-title-text" style="font-weight: 900; font-size: 1.1rem; letter-spacing: 0.5px;">SSC ONLINE MOCK TEST</div>
   </div>
 
-  <div class="tb-h1-right">
-    <button class="tb-ctrl-btn" id="btn-quit" title="Quit Exam" style="color: #d32f2f; border-color: #d32f2f; font-weight: bold; width: auto; padding: 0 10px;">Quit</button>
-    <button class="tb-ctrl-btn" id="btn-fullscreen" title="Fullscreen">⛶</button>
-    <div class="tb-timer-block">
-      <span class="tb-timer-lbl" id="timer-label">Time Left</span>
-      <span class="tb-timer-val" id="timer-text">--:--</span>
+  <div class="tb-h1-right" style="display: flex; align-items: center; justify-content: flex-end;">
+    <div class="tb-timer-block" style="text-align: center; margin-right: 15px;">
+      <span class="tb-timer-lbl" id="timer-label" style="font-weight: bold; font-size: 0.8rem; color: #000; text-transform: none;">Time Left</span>
+      <span class="tb-timer-val" id="timer-text" style="background: #ffff00; padding: 2px 10px; color: red; font-weight: bold; font-size: 1.1rem; display: block; min-width: 80px;">--:--</span>
     </div>
-    <div class="tb-photos">
-      <div class="tb-photo">👤<span>Registration Photo</span></div>
-      <div class="tb-photo">👤<span>Captured Photo</span></div>
+    <div class="tb-photos" style="display: flex; gap: 0;">
+      <div class="tb-photo" style="width: 70px; height: 75px; background: #e0e0e0; border: none; border-radius: 0; display: flex; align-items: flex-end; justify-content: center; position: relative; overflow: hidden; border-left: 1px solid #fff;">
+        <svg viewBox="0 0 24 24" style="width: 60px; height: 60px; fill: #999; margin-bottom: -5px;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      </div>
+      <div class="tb-photo" style="width: 70px; height: 75px; background: #e0e0e0; border: none; border-radius: 0; display: flex; align-items: flex-end; justify-content: center; position: relative; overflow: hidden; border-left: 1px solid #fff;">
+        <svg viewBox="0 0 24 24" style="width: 60px; height: 60px; fill: #999; margin-bottom: -5px;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      </div>
     </div>
   </div>
 </header>
 
 <!-- ── Header Row 2 ── -->
-<header class="tb-h2">
-  <div class="tb-h2-left">
-    <button class="tb-nav-link" id="btn-symbols">SYMBOLS</button>
-    <span class="tb-divider">|</span>
-    <button class="tb-nav-link" id="btn-instructions">INSTRUCTIONS</button>
-    <span class="tb-divider">|</span>
-    <button class="tb-nav-link tb-nav-bold" id="btn-summary">OVERALL TEST SUMMARY</button>
+<div class="tb-h1-sub" style="display: flex; align-items: center; border-bottom: 1px solid #ccc; background: #fff; padding: 6px 15px; justify-content: space-between;">
+  <div id="tb-exam-subtitle" style="font-weight: bold; font-size: 0.9rem; flex: 1;">SSC-Mock Test</div>
+  
+  <div class="tb-zoom-group" style="display: flex; gap: 8px; flex: 1; justify-content: flex-start;">
+    <button class="tb-zoom-btn" id="btn-zoom-in" title="Zoom In" style="background: #1a73e8; color: #fff; border: none; border-radius: 12px; padding: 4px 14px; font-weight: bold;">Zoom (+)</button>
+    <button class="tb-zoom-btn" id="btn-zoom-out" title="Zoom Out" style="background: #1a73e8; color: #fff; border: none; border-radius: 12px; padding: 4px 14px; font-weight: bold;">Zoom (-)</button>
   </div>
+  
+  <div style="flex: 2; text-align: left;">
+    <span style="font-weight: bold; font-size: 0.95rem;">Roll No : 1234567890 &nbsp; <span style="font-weight: bold;">[Candidate Name]</span></span>
+  </div>
+</div>
 
-  <div class="tb-h2-right">
-    <button class="tb-action-btn" id="btn-prev" style="display:none">Previous</button>
-    <button class="tb-action-btn" id="btn-mark">Mark for Review</button>
-    <button class="tb-action-btn" id="btn-next">Save &amp; Next</button>
-    <button class="tb-action-btn" id="btn-submit-section" style="display:none">Submit Section</button>
-    <button class="tb-action-btn" id="btn-submit-test">Submit Test</button>
-  </div>
 
-  <div class="tb-total-answered">
-    Total Questions Answered: <span class="tb-ans-count" id="tb-total-ans-val">0</span>
+
+<!-- ── Header Row 3 (Nav Links) ── -->
+<div class="tb-nav-row" style="display: flex; align-items: center; justify-content: space-between; padding: 0 15px 10px 15px; background: #fff; border-bottom: 2px solid #ccc;">
+  <div class="tb-nav-left" style="display: flex; gap: 15px; flex: 1;">
+    <button class="tb-nav-link" id="btn-symbols" style="color: blue; font-weight: bold; font-size: 0.85rem; text-decoration: underline; background: none; border: none; cursor: pointer; text-transform: uppercase;">SYMBOLS</button>
+    <button class="tb-nav-link" id="btn-instructions" style="color: #ff6600; font-weight: bold; font-size: 0.85rem; text-decoration: underline; background: none; border: none; cursor: pointer; text-transform: uppercase;">INSTRUCTIONS</button>
+    <button class="tb-nav-link" id="btn-summary" style="color: darkred; font-weight: bold; font-size: 0.85rem; text-decoration: underline; background: none; border: none; cursor: pointer; text-transform: uppercase;">OVERALL TEST SUMMARY</button>
   </div>
-</header>
+  <div class="tb-nav-center" style="color: red; font-weight: bold; font-size: 1.05rem; text-align: center; flex: 1.5;">
+  </div>
+  <div class="tb-nav-right" style="flex: 1; text-align: right;">
+    <div class="tb-total-answered" style="font-weight: bold; font-size: 0.9rem;">
+      Total Questions answered: <span class="tb-ans-count" id="tb-total-ans-val" style="background: #ffff00; color: #000; padding: 0 4px; font-weight: bold;">0</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Header Row 4 (Tabs and Actions) ── -->
+<div class="tb-tabs-actions-row" style="display: flex; align-items: center; padding: 12px 15px; background: #fff;">
+  <div class="tb-parts-tabs" id="section-tabs" role="tablist" style="display: flex; gap: 8px; flex: 1;">
+    <!-- Rendered by JS -->
+  </div>
+  
+  <div class="tb-action-buttons-placeholder" style="display: none;"></div>
+
+  <div style="flex: 1; display: flex; justify-content: flex-end; gap: 15px; align-items: center;">
+    <div class="tb-action-buttons-top" style="display: flex; gap: 10px; margin-right: 20px;">
+      <button class="tb-action-btn" id="btn-prev" style="display:none">Previous</button>
+      <button class="tb-action-btn" id="btn-mark">Mark for Review</button>
+      <button class="tb-action-btn" id="btn-next">Save &amp; Next</button>
+      <button class="tb-action-btn" id="btn-submit-section" style="display:none">Submit Section</button>
+      <button class="tb-action-btn" id="btn-submit-test" style="display:none">Submit Test</button>
+    </div>
+    
+    <button class="tb-ctrl-btn" id="btn-quit" title="Quit Exam" style="color: #d32f2f; border: 1px solid #d32f2f; background: transparent; border-radius: 4px; font-weight: bold; padding: 4px 10px; cursor: pointer;">Quit</button>
+    <button class="tb-ctrl-btn" id="btn-fullscreen" title="Fullscreen" style="color: #1a73e8; border: 1px solid #1a73e8; background: transparent; border-radius: 4px; font-weight: bold; padding: 4px 10px; cursor: pointer;">⛶</button>
+  </div>
+</div>
 
 <!-- ── Main Body ── -->
 <div class="tb-body" id="tb-main-body">
 
   <!-- Question Panel -->
-  <main class="tb-q-panel" id="question-panel">
-    <div class="tb-q-wrapper">
-      <div class="tb-q-wrapper-header" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; border-bottom: 1px solid #e0e0e0; flex-wrap: wrap; gap: 10px;">
-        <span class="tb-q-num" id="q-num-badge" style="flex: 1; font-weight: bold;">Question No. 1</span>
-        <span class="tb-q-status" id="q-status-badge" style="text-align: center; font-weight: bold;"></span>
-        <div class="tb-q-meta-bar" style="flex: 1; justify-content: flex-end; display: flex; gap: 12px; align-items: center; border: none; padding: 0;">
-          <div class="tb-lang-label" style="font-weight: bold; color: #000;">
-            Choose Language:
-            <select class="tb-lang-sel"><option>English</option></select>
-          </div>
-          <button class="tb-report-btn">⚠ Report</button>
-        </div>
+  <main class="tb-q-panel" id="question-panel" style="overflow: hidden;">
+    
+    <div style="flex: 1; overflow-y: auto; display: flex; flex-direction: column;">
+      <div class="tb-q-header-row" style="padding: 10px 16px 4px 16px;">
+        <span class="tb-q-num" id="q-num-badge" style="font-weight: bold; font-size: 1.05rem; color: #000;">Question : 1</span>
       </div>
 
       <div id="scroll-lock-msg" style="display: none; background: #ffebee; color: #d32f2f; text-align: center; padding: 6px; font-size: 0.85rem; font-weight: bold; border-bottom: 1px solid #ffcdd2;">
         Mouse scrolling is locked. Please use the scrollbar to scroll.
       </div>
 
-      <div id="q-layout-container" style="display: flex; flex-direction: row; align-items: stretch;">
-        <div id="passage-container" style="display: none; flex: 1; border-right: 1px solid #e0e0e0; padding: 16px 18px; overflow-y: auto; max-height: 500px;">
-          <div id="passage-text" style="font-family: Arial, sans-serif; font-size: 1.05em; line-height: 1.5; color: #212121; white-space: pre-wrap;"></div>
-        </div>
+      <div class="tb-q-wrapper" style="margin: 0 16px 16px 16px; position: relative; border: 1px solid #ccc;">
         
-        <div id="question-content-container" style="flex: 1; overflow-y: auto; max-height: 500px;">
-          <div class="tb-q-box" id="question-card">
-            <div class="tb-q-text" id="question-text">Loading question…</div>
-            <img class="tb-q-img" id="question-image" src="" alt="Question diagram" style="display:none" />
+        <!-- Language and Status inside the box at the top right -->
+        <div style="position: absolute; top: 0; right: 0; display: flex; gap: 15px; align-items: center; padding: 6px 12px; z-index: 10;">
+          <span class="tb-q-status" id="q-status-badge" style="font-weight: bold;"></span>
+          <div class="tb-lang-label" style="font-weight: bold; color: #000; font-size: 0.9rem;">
+            Select Language:
+            <select class="tb-lang-sel" style="padding: 2px 4px; font-weight: bold;"><option>English</option></select>
           </div>
-      
-          <div class="tb-opts" id="options-list" role="radiogroup">
-            <!-- Rendered by JS -->
+          <button class="tb-report-btn" style="display:none;">⚠ Report</button>
+        </div>
+
+        <div id="q-layout-container" style="display: flex; flex-direction: row; align-items: stretch; margin-top: 25px;">
+          <div id="passage-container" style="display: none; flex: 1; border-right: 1px solid #e0e0e0; padding: 16px 18px; overflow-y: auto; max-height: 500px;">
+            <div id="passage-text" style="font-family: Arial, sans-serif; font-size: 1.05em; line-height: 1.5; color: #212121; white-space: pre-wrap;"></div>
+          </div>
+          
+          <div id="question-content-container" style="flex: 1; overflow-y: auto; max-height: 500px; display: flex; flex-direction: column;">
+            <div class="tb-q-box" id="question-card" style="padding-bottom: 16px;">
+              <div class="tb-q-text" id="question-text">Loading question…</div>
+              <img class="tb-q-img" id="question-image" src="" alt="Question diagram" style="display:none" />
+            </div>
+        
+            <div class="tb-opts-table" id="options-list" role="radiogroup" style="border-top: 1px solid #e0e0e0; display: flex; flex-direction: column;">
+              <!-- Rendered by JS -->
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </main>
 
   <!-- Sidebar -->
-  <aside class="tb-sidebar" id="exam-sidebar">
-    <div class="tb-sb-sec-hdr" style="justify-content: flex-start; align-items: center; background: #f5f5f5; display: flex; gap: 8px;">
-      <span class="tb-tri" id="btn-collapse-sidebar" title="Collapse/Expand" style="cursor: pointer;">▶</span>
-      <span class="tb-sb-sec-name" id="sidebar-section-label" style="font-size: 0.9rem; font-weight: bold;">Section</span>
+  <aside class="tb-sidebar" id="exam-sidebar" style="position: relative; border-left: 1px solid #d0d0d0;">
+    <div class="tb-sb-sec-hdr" style="justify-content: center; align-items: center; background: #fff; display: flex; flex-direction: column; padding: 15px;">
+      <span class="tb-sb-sec-name" id="sidebar-section-label" style="font-size: 0.95rem; font-weight: bold; text-align: center;">Section</span>
     </div>
+
+    <span class="tb-tri" id="btn-collapse-sidebar" title="Collapse/Expand" style="position: absolute; top: 0px; left: -14px; background: #1a73e8; color: #fff; padding: 6px 2px; font-size: 1.2rem; cursor: pointer; border-bottom-left-radius: 4px; z-index: 50; display: flex; align-items: center; justify-content: center; line-height: 1; border-top-left-radius: 4px;">▶</span>
 
     <div id="palette-filter-container" style="display:none; padding: 10px 12px; border-bottom: 1px solid #e0e0e0; font-size: 0.8rem; background: #f9f9f9;">
       <label for="palette-filter" style="font-weight: bold; margin-right: 5px;">Filter:</label>
@@ -139,7 +176,7 @@
         </tr>
         <tr>
           <td class="tb-an-label">Not Answered</td>
-          <td class="tb-an-count" style="background:#ffeb3b" id="an-notans">0</td>
+          <td class="tb-an-count" id="an-notans">0</td>
         </tr>
         <tr>
           <td class="tb-an-label">Mark for Review</td>

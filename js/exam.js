@@ -223,24 +223,27 @@ function renderHeader() {
 
   const isFullTest = state.testType === 'full';
   
-  tabsEl.innerHTML = state.testData.sections.map((sec, i) => {
-    const isActive = i === state.currentSectionIndex;
-    const isLocked = isFullTest && i < state.currentSectionIndex;
-    const isFuture = isFullTest && i > state.currentSectionIndex;
-    const isDone   = state.sectionSubmitted[sec.id];
-    
-    let cls = 'tb-part-tab';
-    if (isActive) cls += ' active';
-    if (isLocked) cls += ' locked';
-    if (isDone && !isActive) cls += ' done';
-    
-    const clickAttr = (!isLocked && !isFuture) ? `onclick="switchSection(${i})"` : 'disabled';
-    
-    // For single section, maybe use section name, otherwise Part-A, Part-B, etc.
-    const partName = state.testData.sections.length > 1 ? `PART-${String.fromCharCode(65 + i)}` : sec.name;
+  if (!isFullTest) {
+    tabsEl.style.display = 'none';
+  } else {
+    tabsEl.style.display = 'flex';
+    tabsEl.innerHTML = state.testData.sections.map((sec, i) => {
+      const isActive = i === state.currentSectionIndex;
+      const isLocked = isFullTest && i < state.currentSectionIndex;
+      const isFuture = isFullTest && i > state.currentSectionIndex;
+      const isDone   = state.sectionSubmitted[sec.id];
+      
+      let cls = 'tb-part-tab';
+      if (isActive) cls += ' active';
+      if (isLocked) cls += ' locked';
+      if (isDone && !isActive) cls += ' done';
+      
+      const clickAttr = (!isLocked && !isFuture) ? `onclick="switchSection(${i})"` : 'disabled';
+      const partName = state.testData.sections.length > 1 ? `PART-${String.fromCharCode(65 + i)}` : sec.name;
 
-    return `<button class="${cls}" ${clickAttr}>${partName}</button>`;
-  }).join('');
+      return `<button class="${cls}" ${clickAttr}>${partName}</button>`;
+    }).join('');
+  }
 
   // Update Submit buttons
   if (isAnalysisMode) {
@@ -485,9 +488,11 @@ function renderOptions(q, sid) {
 
     return `
       <div class="tb-opt ${extraClass}">
-        <div class="tb-opt-radio" ${clickAttr}></div>
+        <div class="tb-opt-radio-col" ${clickAttr} style="cursor:pointer;">
+          <div class="tb-opt-radio"></div>
+        </div>
         <div class="tb-opt-text" id="opt-txt-${i}">${opt}</div>
-        ${labelHtml}
+        ${labelHtml ? `<div style="padding: 12px 16px; display:flex; align-items:center;">${labelHtml}</div>` : ''}
       </div>
     `;
   }).join('');
