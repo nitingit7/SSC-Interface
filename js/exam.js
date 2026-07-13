@@ -229,8 +229,8 @@ function renderHeader() {
     tabsEl.style.display = 'flex';
     tabsEl.innerHTML = state.testData.sections.map((sec, i) => {
       const isActive = i === state.currentSectionIndex;
-      const isLocked = isFullTest && i < state.currentSectionIndex;
-      const isFuture = isFullTest && i > state.currentSectionIndex;
+      const isLocked = !isAnalysisMode && isFullTest && i < state.currentSectionIndex;
+      const isFuture = !isAnalysisMode && isFullTest && i > state.currentSectionIndex;
       const isDone   = state.sectionSubmitted[sec.id];
       
       let cls = 'tb-part-tab';
@@ -262,7 +262,8 @@ function renderHeader() {
 }
 
 function switchSection(index) {
-  if (state.testType === 'full' && index !== state.currentSectionIndex) return;
+  // Prevent jumping between sections in a live full test, but allow it in analysis mode.
+  if (!isAnalysisMode && state.testType === 'full' && index !== state.currentSectionIndex) return;
   enterSection(index, true);
 }
 
