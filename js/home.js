@@ -93,32 +93,9 @@ function resetInput() {
 // ─── Initialization ────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
-  applyTheme();
   setupUploadArea();
-  setupThemeToggle();
   State.clear(); // Fresh start whenever home is loaded
 });
-
-// ─── Theme ─────────────────────────────────────────────────────────────────
-
-function applyTheme() {
-  const theme = localStorage.getItem('qm_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-  const btn = document.getElementById('theme-toggle');
-  if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-}
-
-function setupThemeToggle() {
-  const btn = document.getElementById('theme-toggle');
-  if (!btn) return;
-  btn.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('qm_theme', next);
-    btn.textContent = next === 'dark' ? '☀️' : '🌙';
-  });
-}
 
 // ─── File Upload ───────────────────────────────────────────────────────────
 
@@ -281,6 +258,11 @@ function renderPreview(data) {
   // Enable start button
   const startBtn = document.getElementById('btn-start-test');
   if (startBtn) startBtn.disabled = false;
+
+  // Scroll to preview so the user sees the start test button immediately
+  setTimeout(() => {
+    preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
 
 // ─── Start Test ────────────────────────────────────────────────────────────

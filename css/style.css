@@ -48,31 +48,7 @@
   --shadow-xl: 0 16px 56px rgba(0,0,0,0.28);
 }
 
-/* ============================================
-   DARK THEME
-   ============================================ */
-[data-theme="dark"] {
-  --bg:          #0b0d1a;
-  --bg-2:        #111326;
-  --card:        #181b2e;
-  --card-2:      #1f2340;
-  --card-hover:  #252950;
-  --border:      rgba(255,255,255,0.07);
-  --border-2:    rgba(255,255,255,0.12);
-  --text-1:      #f1f5f9;
-  --text-2:      #94a3b8;
-  --text-3:      #64748b;
-  --glass:       rgba(24, 27, 46, 0.85);
-  --option-bg:   #1f2340;
-  --option-sel:  rgba(99,102,241,0.18);
-  --sidebar-bg:  #111326;
-  --modal-dim:   rgba(0,0,0,0.75);
-}
-
-/* ============================================
-   LIGHT THEME
-   ============================================ */
-[data-theme="light"] {
+:root {
   --bg:          #eef2ff;
   --bg-2:        #e0e7ff;
   --card:        #ffffff;
@@ -1131,7 +1107,7 @@ input[type="checkbox"] { accent-color: var(--q-marked); }
   overflow: hidden;
 }
 
-[data-theme="light"] .result-hero {
+.result-hero {
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%);
 }
 

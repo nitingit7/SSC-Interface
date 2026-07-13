@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quick Mock — SSC CGL Practice Tests</title>
-  <meta name="description" content="Practice SSC CGL Tier 1 mock tests with a real exam-like interface. Upload your JSON test file and start practicing instantly." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>" />
+  <title>Quick Mock — Practice Tests</title>
+  <meta name="description" content="Practice mock tests with a real exam-like interface. Paste your JSON test file and start practicing instantly." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>" />
   <link rel="stylesheet" href="css/style.css" />
-<link rel=" stylesheet\ href=\https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css\ crossorigin=\anonymous\><script defer src=\https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js\ crossorigin=\anonymous\></script><script defer src=\https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js\ crossorigin=\anonymous\></script></head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script></head>
 <body>
 <div class="home-wrapper">
 
   <!-- ── Header ─────────────────────────────────────────── -->
   <header class="home-header">
     <div class="logo">
-      <div class="logo-icon">📋</div>
+      <div class="logo-icon">📄</div>
       <span class="logo-text">Quick Mock</span>
     </div>
-    <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☀️</button>
   </header>
 
   <!-- ── Main ───────────────────────────────────────────── -->
@@ -25,7 +24,7 @@
 
     <!-- Hero -->
     <div class="home-hero">
-      <div class="hero-badge">⚡ SSC CGL Tier 1 — Practice Platform</div>
+      <div class="hero-badge">🎓 Practice Tests</div>
       <h1>
         Ace Your Exam with<br />
         <span class="gradient-text">Real Mock Tests</span>
@@ -38,45 +37,45 @@
 
       <!-- Tab Switcher -->
       <div class="input-tabs">
-        <button class="input-tab active" id="tab-upload" onclick="switchInputTab('upload')">
-          📁 Upload File
+        <button class="input-tab active" id="tab-paste" onclick="switchInputTab('paste')">
+          📝 Paste JSON
         </button>
-        <button class="input-tab" id="tab-paste" onclick="switchInputTab('paste')">
-          📋 Paste JSON
+        <button class="input-tab" id="tab-upload" onclick="switchInputTab('upload')">
+          📁 Upload File
         </button>
       </div>
 
+      <!-- ── Panel: Paste JSON ── -->
+      <div id="panel-paste" style="padding: 1.25rem 1.25rem 0;">
+        <div class="paste-area-wrap">
+          <textarea
+            id="json-paste-area"
+            class="json-textarea"
+            placeholder='Paste your test JSON here...&#10;&#10;{&#10;  "test_type": "full",&#10;  "title": "My Mock Test",&#10;  "marking": { "correct": 2, "wrong": -0.5, "unattempted": 0 },&#10;  "sections": [ ... ]&#10;}'
+            spellcheck="false"
+            autocomplete="off"
+          ></textarea>
+          <div class="paste-actions">
+            <button class="btn btn-ghost btn-sm" onclick="clearPaste()">🗑 Clear</button>
+            <button class="btn btn-primary" onclick="parseFromPaste()">
+              🚀 Parse &amp; Preview
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- ── Panel: Upload File ── -->
-      <div id="panel-upload">
+      <div id="panel-upload" style="display:none;">
         <div class="upload-area" id="upload-area" role="button" tabindex="0"
              aria-label="Click or drag to upload JSON test file">
-          <span class="upload-icon-wrap">📂</span>
+          <span class="upload-icon-wrap">📤</span>
           <p class="upload-title">Drop your Test JSON here</p>
           <p class="upload-subtitle">or click to browse your files</p>
           <button class="upload-action-btn" id="upload-btn" type="button">
             📁 Choose JSON File
           </button>
-          <p class="upload-hint">Supports full tests &amp; sectional tests · Works completely offline</p>
+          <p class="upload-hint">Supports full tests &amp; sectional tests • Works completely offline</p>
           <input type="file" id="fileInput" accept=".json,application/json" />
-        </div>
-      </div>
-
-      <!-- ── Panel: Paste JSON ── -->
-      <div id="panel-paste" style="display:none; padding: 1.25rem 1.25rem 0;">
-        <div class="paste-area-wrap">
-          <textarea
-            id="json-paste-area"
-            class="json-textarea"
-            placeholder='Paste your test JSON here…&#10;&#10;{&#10;  "test_type": "full",&#10;  "title": "My Mock Test",&#10;  "marking": { "correct": 2, "wrong": -0.5, "unattempted": 0 },&#10;  "sections": [ ... ]&#10;}'
-            spellcheck="false"
-            autocomplete="off"
-          ></textarea>
-          <div class="paste-actions">
-            <button class="btn btn-ghost btn-sm" onclick="clearPaste()">✕ Clear</button>
-            <button class="btn btn-primary" onclick="parseFromPaste()">
-              ✅ Parse &amp; Preview
-            </button>
-          </div>
         </div>
       </div>
 
