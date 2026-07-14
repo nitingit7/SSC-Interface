@@ -334,9 +334,9 @@ body.analysis-mode .tb-opt.opt-wrong:hover { background: #ffebee; border-color: 
     display: flex !important;
     position: fixed !important;
     top: 0;
+    bottom: 0;
     right: -320px;
     width: 300px;
-    height: 100vh;
     z-index: 999;
     transition: right 0.3s ease;
     box-shadow: -4px 0 15px rgba(0,0,0,0.2);
@@ -421,5 +421,9 @@ body.analysis-mode .tb-opt.opt-wrong:hover { background: #ffebee; border-color: 
     font-weight: bold;
     color: #333;
     white-space: normal;
+  }
+  
+  .tb-analysis-box {
+    padding-bottom: 80px !important;
   }
 }
