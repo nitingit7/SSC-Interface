@@ -59,9 +59,14 @@ function setupUI() {
     });
   }
 
-  // Scroll lock warning
-  document.body.style.overflow = 'hidden';
+  // Scroll lock warning (desktop only)
+  if (window.innerWidth > 768) {
+    document.body.style.overflow = 'hidden';
+  }
   window.addEventListener('wheel', (e) => {
+    // Only lock scrolling on desktop, allow native scroll on mobile devices
+    if (window.innerWidth <= 768) return;
+
     e.preventDefault();
     const msgEl = document.getElementById('scroll-lock-msg');
     if (msgEl) {
@@ -75,6 +80,23 @@ function setupUI() {
 
   const collapseBtn = document.getElementById('btn-collapse-sidebar');
   if (collapseBtn) collapseBtn.addEventListener('click', toggleSidebar);
+
+  // Mobile sidebar logic
+  const mobileBtn = document.getElementById('btn-mobile-palette');
+  const mobileOverlay = document.getElementById('mobile-sidebar-overlay');
+  const sidebar = document.getElementById('exam-sidebar');
+
+  if (mobileBtn && mobileOverlay && sidebar) {
+    mobileBtn.addEventListener('click', () => {
+      sidebar.classList.add('mobile-open');
+      mobileOverlay.classList.add('mobile-open');
+    });
+
+    mobileOverlay.addEventListener('click', () => {
+      sidebar.classList.remove('mobile-open');
+      mobileOverlay.classList.remove('mobile-open');
+    });
+  }
 
   const btnPrev = document.getElementById('btn-prev');
   if (btnPrev) {
@@ -814,12 +836,12 @@ function openSubmitModal(isFull) {
     
     html += `
       <tr style="border-bottom: 1px solid #e0e0e0;">
-        <td style="padding: 12px; border: 1px solid #e0e0e0;">${s.name}</td>
-        <td style="padding: 12px; border: 1px solid #e0e0e0;">${s.questions.length}</td>
-        <td style="padding: 12px; border: 1px solid #e0e0e0;">${ans}</td>
-        <td style="padding: 12px; border: 1px solid #e0e0e0;">${notAns}</td>
-        <td style="padding: 12px; border: 1px solid #e0e0e0;">${mark}</td>
-        <td style="padding: 12px; border: 1px solid #e0e0e0;">${notVis}</td>
+        <td data-label="Section" style="padding: 12px; border: 1px solid #e0e0e0;">${s.name}</td>
+        <td data-label="No. of questions" style="padding: 12px; border: 1px solid #e0e0e0;">${s.questions.length}</td>
+        <td data-label="Answered" style="padding: 12px; border: 1px solid #e0e0e0;">${ans}</td>
+        <td data-label="Not Answered" style="padding: 12px; border: 1px solid #e0e0e0;">${notAns}</td>
+        <td data-label="Marked for Review" style="padding: 12px; border: 1px solid #e0e0e0;">${mark}</td>
+        <td data-label="Not Visited" style="padding: 12px; border: 1px solid #e0e0e0;">${notVis}</td>
       </tr>
     `;
   });

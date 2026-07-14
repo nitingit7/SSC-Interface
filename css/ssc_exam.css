@@ -374,3 +374,93 @@
 .katex { font-size: 1.05em !important; }
 .katex-display { margin: .4em 0 !important; overflow-x: auto; }
 .katex-display > .katex { text-align: left !important; }
+
+/* ============================================
+   MOBILE RESPONSIVENESS
+   ============================================ */
+
+.tb-mobile-fab {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1001;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.tb-mobile-fab:active {
+  transform: scale(0.95);
+}
+
+.tb-mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 998;
+}
+
+@media (max-width: 768px) {
+  .tb-mobile-fab {
+    display: flex;
+  }
+  
+  .tb-sidebar {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    z-index: 999;
+    transition: right 0.3s ease;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+  }
+  
+  .tb-sidebar.mobile-open {
+    right: 0;
+  }
+  
+  .tb-mobile-overlay.mobile-open {
+    display: block;
+  }
+
+  /* Hide the sidebar collapse arrow on mobile as we use the hamburger */
+  .ssc-collapse-arrow {
+    display: none !important;
+  }
+  
+  /* Make header elements stack gracefully */
+  .tb-header-row-1, .tb-header-row-2, .tb-header-row-3 {
+    flex-wrap: wrap;
+    height: auto !important;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  #section-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .tb-q-wrapper {
+    margin: 0 8px 8px 8px !important;
+  }
+  
+  #q-layout-container {
+    flex-direction: column !important;
+  }
+  
+  #passage-container {
+    border-right: none !important;
+    border-bottom: 1px solid #e0e0e0;
+    max-height: 250px !important;
+  }
+}

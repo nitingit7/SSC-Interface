@@ -283,11 +283,143 @@ body.analysis-mode .tb-opt.opt-wrong:hover { background: #ffebee; border-color: 
   .tb-photos { display: none; }
   .tb-h2-left { display: none; }
   .tb-total-answered { display: none; }
-  .tb-parts-tabs { max-width: 200px; }
+  .tb-parts-tabs { max-width: none; }
 }
 @media (max-width: 560px) {
   .tb-action-btn { padding: 4px 8px; font-size: 0.7rem; }
   .tb-h1 { height: 52px; }
   .tb-h2 { top: 52px; }
-  .tb-body { margin-top: 98px; height: calc(100vh - 98px); }
+}
+
+/* ============================================
+   MOBILE RESPONSIVENESS (HAMBURGER & SIDEBAR)
+   ============================================ */
+
+.tb-mobile-fab {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1001;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.tb-mobile-fab:active {
+  transform: scale(0.95);
+}
+
+.tb-mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 998;
+}
+
+@media (max-width: 768px) {
+  .tb-mobile-fab {
+    display: flex;
+  }
+  
+  .tb-sidebar {
+    display: flex !important;
+    position: fixed !important;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    z-index: 999;
+    transition: right 0.3s ease;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+    background: #fff;
+  }
+  
+  .tb-sidebar.mobile-open {
+    right: 0;
+  }
+  
+  .tb-mobile-overlay.mobile-open {
+    display: block;
+  }
+
+  /* Hide the sidebar collapse arrow on mobile as we use the hamburger */
+  .tb-tri {
+    display: none !important;
+  }
+  
+  /* Make header elements stack gracefully */
+  .tb-tabs-actions-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  #q-layout-container {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  
+  #question-content-container, #passage-container {
+    width: 100% !important;
+  }
+  
+  #passage-container {
+    border-right: none !important;
+    border-bottom: 1px solid #e0e0e0;
+    max-height: 250px !important;
+  }
+
+  /* Vertical Table for Submit Modal */
+  #submit-summary-table,
+  #submit-summary-table thead,
+  #submit-summary-table tbody,
+  #submit-summary-table th,
+  #submit-summary-table td,
+  #submit-summary-table tr {
+    display: block;
+    width: 100%;
+  }
+  #submit-summary-table thead {
+    display: none;
+  }
+  #submit-summary-table tr {
+    margin-bottom: 10px;
+    border: 2px solid #00bcd4 !important;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  #submit-summary-table td {
+    border: none !important;
+    border-bottom: 1px solid #eee !important;
+    position: relative;
+    padding: 6px 10px 6px 55% !important;
+    text-align: right !important;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  #submit-summary-table td:last-child {
+    border-bottom: none !important;
+  }
+  #submit-summary-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    white-space: normal;
+  }
 }
