@@ -481,7 +481,7 @@ function renderOptions(q, sid) {
     const isCorrectAnswer = q.answer === i;
     
     let extraClass = isSelected ? 'tb-selected' : '';
-    let clickAttr = `onclick="selectAnswer(${i})" style="cursor:pointer"`;
+    let clickAttr = `onclick="selectAnswer(${i})"`;
     let labelHtml = '';
     
     if (isAnalysisMode) {
@@ -511,8 +511,8 @@ function renderOptions(q, sid) {
 
     return `
       <div class="tb-opt ${extraClass}">
-        <div class="tb-opt-radio-col" ${clickAttr} style="cursor:pointer;">
-          <div class="tb-opt-radio"></div>
+        <div class="tb-opt-radio-col">
+          <div class="tb-opt-radio" ${clickAttr}></div>
         </div>
         <div class="tb-opt-text" id="opt-txt-${i}">${opt}</div>
         ${labelHtml ? `<div style="padding: 12px 16px; display:flex; align-items:center;">${labelHtml}</div>` : ''}
