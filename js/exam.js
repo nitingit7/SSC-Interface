@@ -163,15 +163,13 @@ function setupUI() {
     const isHidden = sessionStorage.getItem('qm_hide_highlights') === 'true';
     btnToggle.textContent = isHidden ? 'Show Highlights' : 'Hide Highlights';
     
-    btnToggle.onclick = () => {
-      const currentlyHidden = sessionStorage.getItem('qm_hide_highlights') === 'true';
-      sessionStorage.setItem('qm_hide_highlights', currentlyHidden ? 'false' : 'true');
-      btnToggle.textContent = currentlyHidden ? 'Hide Highlights' : 'Show Highlights';
-      renderQuestion(); // Re-render to apply/remove highlights
-    };
-    
-    // Insert before Next button
-    btnNext.parentNode.insertBefore(btnToggle, btnNext);
+    btnToggle.addEventListener('click', () => {
+      const isHidden = sessionStorage.getItem('qm_hide_highlights') === 'true';
+      sessionStorage.setItem('qm_hide_highlights', isHidden ? 'false' : 'true');
+      renderQuestion();
+      renderPalette();
+    });
+    document.querySelector('.tb-action-buttons-top').appendChild(btnToggle);
     
     // Show palette filter
     const filterContainer = document.getElementById('palette-filter-container');
@@ -186,6 +184,35 @@ function setupUI() {
 
   document.getElementById('modal-cancel').addEventListener('click', closeModal);
   document.getElementById('modal-confirm').addEventListener('click', confirmSubmit);
+
+  // Instruction overlay logic
+  const overlay = document.getElementById('instruction-overlay');
+  const btnStartOverlay = document.getElementById('btn-start-test-overlay');
+  if (overlay && btnStartOverlay) {
+    if (isAnalysisMode) {
+      overlay.style.display = 'none';
+      window.testStarted = true;
+    } else {
+      window.testStarted = false;
+      btnStartOverlay.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        window.testStarted = true;
+        // Start fullscreen
+        const doc = window.document;
+        const docEl = doc.documentElement;
+        const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+        if(requestFullScreen) requestFullScreen.call(docEl);
+        
+        // Reset timer start for current section now that test actually started
+        const sec = curSection();
+        state.sectionStartTime[sec.id] = Date.now();
+        save();
+        startTimer();
+      });
+    }
+  } else {
+    window.testStarted = true;
+  }
 }
 
 function setZoom(val) {
@@ -325,7 +352,7 @@ function startTimer() {
   const timerTxt = document.getElementById('timer-text');
   
   function tick() {
-    if (isPaused) {
+    if (isPaused || window.testStarted === false) {
       // Shift the start time forward so elapsed time doesn't grow while paused
       state.sectionStartTime[sec.id] += 1000; 
       save();

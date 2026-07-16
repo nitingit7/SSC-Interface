@@ -13,6 +13,52 @@
 </head>
 <body class="tb-exam-page">
 
+<!-- ── Instructions Overlay ── -->
+<div id="instruction-overlay" style="position: fixed; inset: 0; background: #fff; z-index: 99999; display: flex; flex-direction: column;">
+  <div style="background: #0854AC; color: #fff; padding: 15px; text-align: center; font-size: 1.5rem; font-weight: bold;">
+    Instructions
+  </div>
+  
+  <div id="instruction-content" style="flex: 1; padding: 20px; overflow-y: auto; font-family: Arial, sans-serif; line-height: 1.6; font-size: 1.1rem; color: #333;">
+    <style>
+      #instruction-content::-webkit-scrollbar {
+        width: 16px; /* Thick scrollbar for mobile */
+      }
+      #instruction-content::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+      #instruction-content::-webkit-scrollbar-thumb {
+        background: #888; 
+        border-radius: 8px;
+        border: 3px solid #f1f1f1;
+      }
+      #instruction-content::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
+    </style>
+    <h3 style="color: #d32f2f;">General Instructions:</h3>
+    <ol style="padding-left: 20px;">
+      <li style="margin-bottom: 10px;">The clock will be set at the server. The countdown timer in the top right corner of screen will display the remaining time available for you to complete the examination.</li>
+      <li style="margin-bottom: 10px;">When the timer reaches zero, the examination will end by itself. You will not be required to end or submit your examination.</li>
+      <li style="margin-bottom: 10px;">Clicking on the "Start Test" button below will automatically enter Full Screen mode and begin your test.</li>
+      <li style="margin-bottom: 10px;">You are not allowed to use any electronic devices other than the provided computer system.</li>
+      <li style="margin-bottom: 10px;">Make sure you read all the questions carefully before selecting your answer.</li>
+      <li style="margin-bottom: 10px;">You can use the 'Mark for Review' button to flag a question you are unsure about and return to it later.</li>
+      <li style="margin-bottom: 10px;">To deselect an answer, click on the same radio button again, or use the 'Clear Response' button if available.</li>
+      <!-- Filler content to make it scrollable on smaller screens -->
+      <li style="margin-bottom: 10px;">Maintain silence during the examination. Any communication with other candidates will lead to disqualification.</li>
+      <li style="margin-bottom: 10px;">Rough sheets will be provided by the invigilator. All rough work must be done on the provided sheets only.</li>
+      <li style="margin-bottom: 10px;">Do not close the browser window or refresh the page during the exam, as it may result in submission of your test.</li>
+    </ol>
+    <br/><br/>
+  </div>
+  
+  <div style="background: #f0f0f0; padding: 15px; border-top: 1px solid #ccc; text-align: center; flex-shrink: 0;">
+    <button id="btn-start-test-overlay" style="background: #4caf50; color: #fff; border: none; padding: 12px 30px; font-size: 1.2rem; font-weight: bold; border-radius: 4px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+      Ready to Begin
+    </button>
+  </div>
+</div>
 <!-- ── Header Row 1 ── -->
 <!-- ── Header Row 1 ── -->
 <!-- ── Header Row 1 ── -->
